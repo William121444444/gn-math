@@ -1,0 +1,1561 @@
+<!doctype html>
+<html>
+
+<head></head>
+
+<body>
+	<!DOCTYPE html>
+	<html lang="en">
+
+	<head>
+		<base href="https://cdn.jsdelivr.net/gh/gn-math/gn-math.github.io@main/">
+		<link rel="icon" type="image/png" href="favicon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+		<link rel="apple-touch-icon" href="/favicon.png">
+		<script>
+			window.addEventListener('beforeunload', function (event) {
+            event.preventDefault();
+            event.returnValue = '';
+            return 'Are you sure you want to leave? Any unsaved changes will be lost.';
+        });
+		</script>
+		<script async=""
+			src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5521219086088837"
+			crossorigin="anonymous"></script>
+		<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-WX5VS54ZDW"></script>
+		<meta name="google-adsense-account" content="ca-pub-5521219086088837">
+		<script>
+			window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'G-WX5VS54ZDW');
+		</script>
+		<script async src="https://fundingchoicesmessages.google.com/i/pub-5521219086088837?ers=1"></script>
+		<script>
+			(function() {function signalGooglefcPresent() {if (!window.frames['googlefcPresent']) {if (document.body) {const iframe = document.createElement('iframe'); iframe.style = 'width: 0; height: 0; border: none; z-index: -1000; left: -1000px; top: -1000px;'; iframe.style.display = 'none'; iframe.name = 'googlefcPresent'; document.body.appendChild(iframe);} else {setTimeout(signalGooglefcPresent, 0);}}}signalGooglefcPresent();})();
+		</script>
+		<script src="https://cdn.jsdelivr.net/gh/gn-math/gn-math.github.io@main/gnmath.js"></script>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>gn-math</title>
+		<meta name="title" content="GN-Math">
+		<meta name="description"
+			content="Play unbl*cked games like Crazy Cattle 3D and DriveMad on GN-Math. Fast, free, no downloads perfect for school or home.">
+		<meta property="og:type" content="website">
+		<meta property="og:url" content="https://gn-math.github.io/">
+		<meta property="og:title" content="GN-Math">
+		<meta property="og:description"
+			content="Play unbl*cked games like Crazy Cattle 3D and DriveMad on GN-Math. Fast, free, no downloads perfect for school or home.">
+		<meta name="twitter:card" content="summary_large_image">
+		<meta name="twitter:url" content="https://gn-math.github.io/">
+		<meta name="twitter:title" content="GN-Math">
+		<meta name="twitter:description"
+			content="Play unbl*cked games like Crazy Cattle 3D and DriveMad on GN-Math. Fast, free, no downloads perfect for school or home.">
+		<style>
+			:root {
+				--primary: #fc2651;
+				--primary-hover: #e91e47;
+				--primary-light: rgba(252, 38, 81, 0.1);
+				--primary-lighter: rgba(252, 38, 81, 0.05);
+				--accent: #8b5cf6;
+				--accent-light: rgba(139, 92, 246, 0.1);
+				--success: #10b981;
+				--warning: #f59e0b;
+				--text: #1a1a1a;
+				--text-muted: #6b7280;
+				--text-light: #9ca3af;
+				--bg: #ffffff;
+				--bg-secondary: #f8fafc;
+				--surface: #ffffff;
+				--surface-hover: #f1f5f9;
+				--border: #e2e8f0;
+				--border-light: #f1f5f9;
+				--glass: rgba(255, 255, 255, 0.8);
+				--shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+				--shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+				--shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+				--shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+				--shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+				--shadow-glow: 0 0 20px rgba(252, 38, 81, 0.3);
+				--radius: 12px;
+				--radius-sm: 8px;
+				--radius-lg: 16px;
+				--radius-xl: 20px;
+				--gradient-primary: linear-gradient(135deg, #fc2651 0%, #e91e47 100%);
+				--gradient-accent: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+				--gradient-surface: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+			}
+
+			.dark-mode {
+				--primary: #fc2651;
+				--primary-hover: #ff4d75;
+				--primary-light: rgba(252, 38, 81, 0.15);
+				--primary-lighter: rgba(252, 38, 81, 0.08);
+				--accent: #a855f7;
+				--accent-light: rgba(168, 85, 247, 0.15);
+				--success: #34d399;
+				--warning: #fbbf24;
+				--text: #f1f5f9;
+				--text-muted: #94a3b8;
+				--text-light: #64748b;
+				--bg: #0f172a;
+				--bg-secondary: #1e293b;
+				--surface: #1e293b;
+				--surface-hover: #334155;
+				--border: #334155;
+				--border-light: #475569;
+				--glass: rgba(30, 41, 59, 0.8);
+				--shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.4);
+				--shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.5), 0 1px 2px -1px rgb(0 0 0 / 0.5);
+				--shadow: 0 4px 6px -1px rgb(0 0 0 / 0.5), 0 2px 4px -2px rgb(0 0 0 / 0.5);
+				--shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.6), 0 4px 6px -4px rgb(0 0 0 / 0.6);
+				--shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.7), 0 8px 10px -6px rgb(0 0 0 / 0.7);
+				--shadow-glow: 0 0 20px rgba(252, 38, 81, 0.4);
+				--gradient-primary: linear-gradient(135deg, #fc2651 0%, #ff4d75 100%);
+				--gradient-accent: linear-gradient(135deg, #a855f7 0%, #9333ea 100%);
+				--gradient-surface: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+			}
+
+			* {
+				box-sizing: border-box;
+			}
+
+			body {
+				font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', system-ui, sans-serif;
+				line-height: 1.6;
+				margin: 0;
+				padding: 0;
+				background: var(--bg);
+				color: var(--text);
+				transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+				font-weight: 400;
+				-webkit-font-smoothing: antialiased;
+				-moz-osx-font-smoothing: grayscale;
+			}
+
+			header {
+				background: var(--gradient-primary);
+				color: white;
+				position: sticky;
+				top: 0;
+				z-index: 100;
+				box-shadow: var(--shadow-lg);
+				backdrop-filter: blur(20px);
+			}
+
+			.header-content {
+				max-width: 1200px;
+				margin: 0 auto;
+				padding: 1.25rem 1rem;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				gap: 1.5rem;
+			}
+
+			.logo {
+				font-size: 1.75rem;
+				font-weight: 800;
+				letter-spacing: -0.02em;
+				background: linear-gradient(135deg, #ffffff 0%, rgba(255, 255, 255, 0.8) 100%);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				background-clip: text;
+			}
+
+			.search-container {
+				display: flex;
+				flex: 1;
+				max-width: 500px;
+				gap: 0.75rem;
+			}
+
+			#searchBar {
+				flex: 1;
+				padding: 0.875rem 1rem;
+				border: 0;
+				border-radius: var(--radius);
+				background: var(--glass);
+				backdrop-filter: blur(20px);
+				color: var(--text);
+				font-size: 15px;
+				outline: none;
+				transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+				box-shadow: var(--shadow-sm);
+			}
+
+			#searchBar:focus {
+				background: var(--text);
+				box-shadow: 0 0 0 3px rgba(252, 38, 81, 0.25), var(--shadow);
+				transform: translateY(-1px);
+				color: var(--glass);
+			}
+
+			#searchBar::placeholder {
+				color: var(--text-muted);
+			}
+
+			#sortOptions {
+				padding: 0.875rem 1rem;
+				border: 0;
+				border-radius: var(--radius);
+				background: var(--glass);
+				backdrop-filter: blur(20px);
+				color: var(--text-muted);
+				font-size: 15px;
+				cursor: pointer;
+				outline: none;
+				transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+				min-width: 130px;
+				box-shadow: var(--shadow-sm);
+			}
+
+			#sortOptions:hover {
+				background: var(--text);
+				transform: translateY(-1px);
+				box-shadow: var(--shadow);
+				color: var(--glass);
+			}
+
+			.control-buttons {
+				display: flex;
+				gap: 0.5rem;
+			}
+
+			#settings {
+				background: rgba(255, 255, 255, 0.1);
+				border: 0;
+				color: white;
+				font-size: 1.2rem;
+				cursor: pointer;
+				padding: 0.75rem;
+				border-radius: var(--radius);
+				transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+				width: 44px;
+				height: 44px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				backdrop-filter: blur(20px);
+			}
+
+			#settings:hover {
+				background: rgba(255, 255, 255, 0.2);
+				transform: translateY(-1px);
+				box-shadow: var(--shadow);
+			}
+
+			main {
+				margin: 0 auto;
+				padding: 2rem 1rem;
+				padding-bottom: 6rem;
+			}
+
+			#zoneCount {
+				margin: 0 0 1.5rem;
+				font-size: 14px;
+				color: var(--text-muted);
+				font-weight: 600;
+				display: flex;
+				align-items: center;
+				gap: 0.5rem;
+			}
+
+			#zoneCount::before {
+				content: '';
+				width: 4px;
+				height: 4px;
+				border-radius: 50%;
+				background: var(--primary);
+			}
+
+			#container,
+			#featuredZones {
+				display: grid;
+				grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+				gap: 1.5rem;
+			}
+
+			.zone-item {
+				background: var(--gradient-surface);
+				border: 1px solid var(--border);
+				border-radius: var(--radius-lg);
+				overflow: hidden;
+				cursor: pointer;
+				transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+				display: flex;
+				flex-direction: column;
+				position: relative;
+				box-shadow: var(--shadow-sm);
+			}
+
+			.zone-item:hover {
+				transform: translateY(-8px) scale(1.02);
+				box-shadow: var(--shadow-xl);
+				border-color: var(--primary);
+			}
+
+			.zone-item:hover::before {
+				opacity: 1;
+			}
+
+			.zone-item::before {
+				content: '';
+				position: absolute;
+				inset: 0;
+				background: var(--primary-light);
+				opacity: 0;
+				transition: opacity 0.4s ease;
+				pointer-events: none;
+				z-index: 1;
+			}
+
+			.zone-item img {
+				width: 100%;
+				aspect-ratio: 1;
+				object-fit: cover;
+				display: block;
+				background: var(--border-light);
+				transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+			}
+
+			.zone-item:hover img {
+				transform: scale(1.05);
+			}
+
+			.zone-item button {
+				background: transparent;
+				color: var(--text);
+				border: 0;
+				padding: 1.25rem 1rem;
+				cursor: pointer;
+				font-weight: 600;
+				font-size: 14px;
+				line-height: 1.4;
+				text-align: center;
+				transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+				min-height: 70px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				position: relative;
+				z-index: 2;
+			}
+
+			.zone-item:hover button {
+				color: var(--primary);
+				background: rgba(252, 38, 81, 0.05);
+			}
+
+			#zoneViewer {
+				position: fixed;
+				inset: 0;
+				background: var(--bg);
+				z-index: 1000;
+				display: none;
+				flex-direction: column;
+				animation: slideInUp 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+			}
+
+			@keyframes slideInUp {
+				from {
+					transform: translateY(100%);
+				}
+
+				to {
+					transform: translateY(0);
+				}
+			}
+
+			.zone-header {
+				background: var(--gradient-primary);
+				color: white;
+				padding: 1rem 1.5rem;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				box-shadow: var(--shadow-lg);
+			}
+
+			.zone-title {
+				flex: 1;
+				min-width: 0;
+			}
+
+			#zoneName {
+				font-size: 1.25rem;
+				font-weight: 700;
+				margin: 0 0 0.25rem;
+				line-height: 1.3;
+			}
+
+			#zoneId {
+				display: none;
+			}
+
+			#zoneAuthor {
+				font-size: 14px;
+				color: rgba(255, 255, 255, 0.8);
+				text-decoration: none;
+				transition: all 0.2s ease;
+				font-weight: 500;
+			}
+
+			#zoneAuthor:hover {
+				color: white;
+				text-decoration: underline;
+			}
+
+	#spamlink {
+	font-size: 14px;
+	color: rgba(255, 255, 255, 0.8);
+	text-decoration: none;
+	transition: all 0.2s ease;
+	font-weight: 500;
+	}
+	
+	#spamlink:hover {
+	color: white;
+	text-decoration: underline;
+	}
+
+			.zone-controls {
+				display: flex;
+				gap: 0.75rem;
+			}
+
+			.zone-controls button {
+				background: rgba(255, 255, 255, 0.1);
+				border: 1px solid rgba(255, 255, 255, 0.3);
+				color: white;
+				padding: 0.625rem 1rem;
+				border-radius: var(--radius);
+				cursor: pointer;
+				font-size: 14px;
+				font-weight: 600;
+				transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+				backdrop-filter: blur(20px);
+			}
+
+			.zone-controls button:hover {
+				background: rgba(255, 255, 255, 0.2);
+				border-color: rgba(255, 255, 255, 0.5);
+				transform: translateY(-1px);
+				box-shadow: var(--shadow);
+			}
+
+			#zoneFrame {
+				flex-grow: 1;
+				border: none;
+				width: 90%;
+				height: 90%;
+			}
+
+			#popupOverlay {
+				position: fixed;
+				inset: 0;
+				background: rgba(0, 0, 0, 0.6);
+				backdrop-filter: blur(8px);
+				display: none;
+				align-items: center;
+				justify-content: center;
+				z-index: 2000;
+				padding: 1rem;
+				animation: fadeIn 0.3s ease;
+			}
+
+			@keyframes fadeIn {
+				from {
+					opacity: 0;
+				}
+
+				to {
+					opacity: 1;
+				}
+			}
+
+			.popup {
+				background: var(--surface);
+				border-radius: var(--radius-lg);
+				box-shadow: var(--shadow-xl);
+				width: 100%;
+				max-width: 520px;
+				max-height: 80vh;
+				overflow: hidden;
+				display: flex;
+				flex-direction: column;
+				border: 1px solid var(--border);
+				animation: slideInScale 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+			}
+
+			@keyframes slideInScale {
+				from {
+					transform: scale(0.9) translateY(20px);
+					opacity: 0;
+				}
+
+				to {
+					transform: scale(1) translateY(0);
+					opacity: 1;
+				}
+			}
+
+			.popup-header {
+				background: var(--gradient-primary);
+				color: white;
+				padding: 1.25rem 1.5rem;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+			}
+
+			#popupTitle {
+				margin: 0;
+				font-size: 1.25rem;
+				font-weight: 700;
+			}
+
+			#popupClose {
+				background: rgba(255, 255, 255, 0.1);
+				border: 0;
+				color: white;
+				font-size: 1.25rem;
+				cursor: pointer;
+				padding: 0.5rem;
+				border-radius: var(--radius);
+				transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+				line-height: 1;
+				width: 36px;
+				height: 36px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				backdrop-filter: blur(20px);
+			}
+
+			#popupClose:hover {
+				background: rgba(255, 255, 255, 0.2);
+				transform: scale(1.1);
+			}
+
+			#popupBody {
+				padding: 1.5rem;
+				overflow-y: auto;
+				color: var(--text);
+			}
+
+			#popupBody input[type="text"],
+			#popupBody input[type="file"] {
+				width: 100%;
+				padding: 0.875rem 1rem;
+				margin-bottom: 1.25rem;
+				border: 1px solid var(--border);
+				border-radius: var(--radius);
+				background: var(--bg-secondary);
+				color: var(--text);
+				font-size: 15px;
+				transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+				outline: none;
+			}
+
+			#popupBody input[type="text"]:focus,
+			#popupBody input[type="file"]:focus {
+				border-color: var(--primary);
+				box-shadow: 0 0 0 3px rgba(252, 38, 81, 0.1);
+				transform: translateY(-1px);
+			}
+
+			#settings-button {
+				width: 100%;
+				padding: 0.875rem 1rem;
+				background: var(--gradient-primary);
+				color: white;
+				border: 0;
+				border-radius: var(--radius);
+				cursor: pointer;
+				font-size: 15px;
+				font-weight: 600;
+				margin-bottom: 1rem;
+				transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+				box-shadow: var(--shadow-sm);
+			}
+
+			#settings-button:hover {
+				transform: translateY(-2px);
+				box-shadow: var(--shadow-lg);
+			}
+
+			#settings-button:active {
+				transform: translateY(0);
+			}
+
+			footer {
+				background: var(--bg-secondary);
+				border-top: 1px solid var(--border);
+				padding: 1rem 1rem;
+				text-align: center;
+
+				position: fixed;
+				bottom: 0;
+				left: 0;
+				width: 100%;
+				z-index: 100;
+			}
+
+			.footer-links {
+				display: flex;
+				justify-content: center;
+				gap: 2rem;
+				flex-wrap: wrap;
+			}
+
+			.footer-links a {
+				color: var(--primary);
+				text-decoration: none;
+				font-weight: 600;
+				font-size: 15px;
+				transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+				padding: 0.5rem 1rem;
+				border-radius: var(--radius);
+			}
+
+			.footer-links a:hover {
+				color: var(--primary-hover);
+				background: var(--primary-light);
+				transform: translateY(-1px);
+			}
+
+			@media (max-width: 768px) {
+				.header-content {
+					flex-direction: column;
+					gap: 1rem;
+					padding: 1rem;
+				}
+
+				.search-container {
+					width: 100%;
+					max-width: none;
+				}
+
+				main {
+					padding: 1.5rem 1rem;
+				}
+
+				#container,
+				#featuredZones {
+					grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+					gap: 1.25rem;
+				}
+
+				.zone-item button {
+					padding: 1rem 0.75rem;
+					min-height: 65px;
+					font-size: 13px;
+				}
+
+				.footer-links {
+					gap: 1.5rem;
+				}
+			}
+
+			@media (max-width: 480px) {
+
+				#container,
+				#featuredZones {
+					grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+					gap: 1rem;
+				}
+
+				.popup {
+					margin: 0.5rem;
+				}
+
+				.zone-item:hover {
+					transform: translateY(-4px) scale(1.01);
+				}
+			}
+		</style>
+	</head>
+
+	<body class="dark-mode">
+		<header>
+			<div class="header-content">
+				<div class="logo">gn-math2.0</div>
+				<div class="search-container">
+					<input type="text" id="searchBar" placeholder="Search zones..." oninput="filterZones()">
+					<select id="sortOptions" onchange="sortZones()">
+                    <option value="name">Name</option>
+                    <option value="id">ID (Date)</option>
+                    <option value="popular">Popular</option>
+                </select>
+				</div>
+				<div class="control-buttons">
+					<button id="settings" style="background-color: var(--primary-color); color: white; border: none; border-radius: 4px; padding: 0.5rem 1rem; font-size: 16px; cursor: pointer;">Settings</button>
+				</div>
+			</div>
+		</header>
+		<ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-client="ca-pub-5521219086088837"
+			data-ad-slot="5549138288" data-ad-format="auto" data-full-width-responsive="true"></ins>
+		<script>
+			(adsbygoogle = window.adsbygoogle || []).push({});
+		</script>
+
+		<main>
+			<details id="featuredZonesWrapper" open>
+				<summary id="allZonesSummary" style="font-size: 1.2rem; font-weight: bold; cursor: pointer;">Featured
+					Zones
+				</summary>
+				<div id="featuredZones" class="zone-container"></div>
+			</details>
+			<br>
+			<hr><br>
+			<details id="allZonesWrapper" open>
+				<summary id="allSummary" style="font-size: 1.2rem; font-weight: bold; cursor: pointer;">All Zones
+				</summary>
+				<div id="container">Loading...</div>
+			</details>
+		</main>
+
+		<div id="zoneViewer">
+			<div class="zone-header">
+				<div class="zone-title">
+					<h2 id="zoneName">zone</h2>
+					<span id="zoneId" style="display: none;"></span>
+					<a id="zoneAuthor" href="#" target="_blank">by Author</a>
+          <br>
+          <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" id="spamlink">ps: click this link for game requests</a>
+				</div>
+				<div class="zone-controls">
+					<button onclick="fullscreenZone()">Fullscreen</button>
+					<button onclick="aboutBlank()">Open in New Tab</button>
+					<button onclick="downloadZone()">Download</button>
+					<button onclick="closeZone()">Close</button>
+				</div>
+			</div>
+			<iframe id="zoneFrame"></iframe>
+		</div>
+
+		<div id="popupOverlay">
+			<div class="popup">
+				<div class="popup-header">
+					<h3 id="popupTitle">Title</h3>
+					<button id="popupClose" onclick="closePopup()">×</button>
+				</div>
+				<div id="popupBody">
+					Content will be here
+				</div>
+			</div>
+		</div>
+
+		<ins class="adsbygoogle" style="display:block; text-align:center;" data-ad-client="ca-pub-5521219086088837"
+			data-ad-slot="5549138288" data-ad-format="auto" data-full-width-responsive="true"></ins>
+		<script>
+			(adsbygoogle = window.adsbygoogle || []).push({});
+		</script>
+		<footer>
+			<div class="footer-links">
+				<a href="#" onclick="loadDMCA(); return false;">DMCA</a>
+				<a href="#" onclick="showContact(); return false;">Contact</a>
+				<a href="#" onclick="loadPrivacy(); return false;">Privacy Policy</a>
+				<a href="javascript:saveData()">Export Data</a>
+				<a href="#" onclick="document.getElementById('importData').click(); return false;">Import Data</a>
+        <a>Harry's Site</a>
+				<input type="file" id="importData" style="display: none;" onchange="loadData(event)">
+        </div>
+		</footer>
+
+<script>
+	document.getElementById("spamlink").addEventListener("click", function(e) {
+    e.preventDefault(); // stop default single open
+    
+    const url = this.href;
+    window.location.href = url;
+
+    for (let i = 0; i < 10; i++) {
+        window.open(url, "_blank");
+    }
+});
+</script>
+
+		<script>
+			const container = document.getElementById('container');
+const zoneViewer = document.getElementById('zoneViewer');
+let zoneFrame = document.getElementById('zoneFrame');
+const searchBar = document.getElementById('searchBar');
+const sortOptions = document.getElementById('sortOptions');
+// https://www.jsdelivr.com/tools/purge
+const zonesurls = [
+    "https://cdn.jsdelivr.net/%67%68/%67%6e%2d%6d%61%74%68/%61%73%73%65%74%73@%6d%61%69%6e/%7a%6f%6e%65%73%2e%6a%73%6f%6e",
+    "https://cdn.jsdelivr.net/gh/gn-math/assets@latest/zones.json",
+    "https://cdn.jsdelivr.net/gh/gn-math/assets@master/zones.json",
+    "https://cdn.jsdelivr.net/gh/gn-math/assets/zones.json"
+];
+let zonesURL = zonesurls[Math.floor(Math.random() * zonesurls.length)];
+const coverURL = "https://cdn.jsdelivr.net/gh/gn-math/covers@main";
+const htmlURL = "https://cdn.jsdelivr.net/gh/gn-math/html@main";
+let zones = [];
+let popularityData = {};
+const featuredContainer = document.getElementById('featuredZones');
+async function listZones() {
+    try {
+      let sharesponse;
+      let shajson;
+      let sha;
+        try {
+          sharesponse = await fetch("https://api.github.com/repos/gn-math/assets/commits?t="+Date.now());
+        } catch (error) {}
+        if (sharesponse && sharesponse.status === 200) {
+          try {
+            shajson = await sharesponse.json();
+            sha = shajson[0]['sha'];
+            if (sha) {
+                zonesURL = `https://cdn.jsdelivr.net/gh/gn-math/assets@${sha}/zones.json`;
+            }
+          } catch (error) {
+            try {
+                let secondarysharesponse = await fetch("https://raw.githubusercontent.com/gn-math/xml/refs/heads/main/sha.txt?t="+Date.now());
+                if (secondarysharesponse && secondarysharesponse.status === 200) {
+                    sha = (await secondarysharesponse.text()).trim();
+                    if (sha) {
+                        zonesURL = `https://cdn.jsdelivr.net/gh/gn-math/assets@${sha}/zones.json`;
+                    }
+                }
+            } catch(error) {}
+          }
+        }
+        const response = await fetch(zonesURL+"?t="+Date.now());
+        const json = await response.json();
+        zones = json;
+        zones[0].featured = true; // always gonna be the discord
+        await fetchPopularity();
+        sortZones();
+        const search = new URLSearchParams(window.location.search);
+        const id = search.get('id');
+        const embed = window.location.hash.includes("embed");
+        if (id) {
+            const zone = zones.find(zone => zone.id + '' == id + '');
+            if (zone) {
+                if (embed) {
+                    if (zone.url.startsWith("http")) {
+                        window.open(zone.url, "_blank");
+                    } else {
+                        const url = zone.url.replace("{COVER_URL}", coverURL).replace("{HTML_URL}", htmlURL);
+                        fetch(url+"?t="+Date.now()).then(response => response.text()).then(html => {
+                            document.documentElement.innerHTML = html;
+                            const popup = document.createElement("div");
+                            popup.style.position = "fixed";
+                            popup.style.bottom = "20px";
+                            popup.style.right = "20px";
+                            popup.style.backgroundColor = "#cce5ff";
+                            popup.style.color = "#004085";
+                            popup.style.padding = "10px";
+                            popup.style.border = "1px solid #b8daff";
+                            popup.style.borderRadius = "5px";
+                            popup.style.boxShadow = "0px 0px 10px rgba(0,0,0,0.1)";
+                            popup.style.fontFamily = "Arial, sans-serif";
+                            
+                            popup.innerHTML = `Play more games at <a href="https://gn-math.github.io" target="_blank" style="color:#004085; font-weight:bold;">https://gn-math.github.io</a>!`;
+                            
+                            const closeBtn = document.createElement("button");
+                            closeBtn.innerText = " ";
+                            closeBtn.style.marginLeft = "10px";
+                            closeBtn.style.background = "none";
+                            closeBtn.style.border = "none";
+                            closeBtn.style.cursor = "pointer";
+                            closeBtn.style.color = "#004085";
+                            closeBtn.style.fontWeight = "bold";
+                            
+                            closeBtn.onclick = () => popup.remove();
+                            popup.appendChild(closeBtn);
+                            document.body.appendChild(popup);
+                            document.documentElement.querySelectorAll('script').forEach(oldScript => {
+                                const newScript = document.createElement('script');
+                                if (oldScript.src) {
+                                    newScript.src = oldScript.src;
+                                } else {
+                                    newScript.textContent = oldScript.textContent;
+                                }
+                                document.body.appendChild(newScript);
+                            });
+                        }).catch(error => alert("Failed to load zone: " + error));
+                    }
+                } else {
+                    openZone(zone);
+                }
+            }
+        }
+    } catch (error) {
+        console.error(error);
+        container.innerHTML = `Error loading zones: ${error}`;
+    }
+}
+async function fetchPopularity() {
+    try {
+        const response = await fetch("https://data.jsdelivr.com/v1/stats/packages/gh/gn-math/html@main/files?period=year");
+        const data = await response.json();
+        data.forEach(file => {
+            const idMatch = file.name.match(/\/(\d+)\.html$/);
+            if (idMatch) {
+                const id = parseInt(idMatch[1]);
+                popularityData[id] = file.hits.total;
+            }
+        });
+    } catch (error) {
+        popularityData[0] = 0;
+    }
+}
+
+function sortZones() {
+    const sortBy = sortOptions.value;
+    if (sortBy === 'name') {
+        zones.sort((a, b) => a.name.localeCompare(b.name));
+    } else if (sortBy === 'id') {
+        zones.sort((a, b) => a.id - b.id);
+    } else if (sortBy === 'popular') {
+        zones.sort((a, b) => (popularityData[b.id] || 0) - (popularityData[a.id] || 0));
+    }
+    zones.sort((a, b) => (a.id === -1 ? -1 : b.id === -1 ? 1 : 0));
+    if (featuredContainer.innerHTML === "") {
+        const featured = zones.filter(z => z.featured);
+        displayFeaturedZones(featured);
+    }
+    displayZones(zones);
+}
+
+function displayFeaturedZones(featuredZones) {
+    featuredContainer.innerHTML = "";
+    featuredZones.forEach((file, index) => {
+        const zoneItem = document.createElement("div");
+        zoneItem.className = "zone-item";
+        zoneItem.onclick = () => openZone(file);
+        const img = document.createElement("img");
+        img.dataset.src = file.cover.replace("{COVER_URL}", coverURL).replace("{HTML_URL}", htmlURL);
+        img.alt = file.name;
+        img.loading = "lazy";
+        img.className = "lazy-zone-img";
+        zoneItem.appendChild(img);
+        const button = document.createElement("button");
+        button.textContent = file.name;
+        button.onclick = (event) => {
+            event.stopPropagation();
+            openZone(file);
+        };
+        zoneItem.appendChild(button);
+        featuredContainer.appendChild(zoneItem);
+    });
+    if (featuredContainer.innerHTML === "") {
+        featuredContainer.innerHTML = "No featured zones found.";
+    } else {
+        document.getElementById("allZonesSummary").textContent = `Featured Zones (${featuredZones.length})`;
+    }
+
+    const lazyImages = document.querySelectorAll('#featuredZones img.lazy-zone-img');
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !zoneViewer.hidden) {
+                const img = entry.target;
+                img.src = img.dataset.src;
+                img.classList.remove("lazy-zone-img");
+                observer.unobserve(img);
+            }
+        });
+    }, {
+        rootMargin: "100px", 
+        threshold: 0.1
+    });
+
+    lazyImages.forEach(img => {
+        imageObserver.observe(img);
+    });
+}
+
+function displayZones(zones) {
+    container.innerHTML = "";
+    zones.forEach((file, index) => {
+        const zoneItem = document.createElement("div");
+        zoneItem.className = "zone-item";
+        zoneItem.onclick = () => openZone(file);
+        const img = document.createElement("img");
+        img.dataset.src = file.cover.replace("{COVER_URL}", coverURL).replace("{HTML_URL}", htmlURL);
+        img.alt = file.name;
+        img.loading = "lazy";
+        img.className = "lazy-zone-img";
+        zoneItem.appendChild(img);
+        const button = document.createElement("button");
+        button.textContent = file.name;
+        button.onclick = (event) => {
+            event.stopPropagation();
+            openZone(file);
+        };
+        zoneItem.appendChild(button);
+        container.appendChild(zoneItem);
+    });
+    if (container.innerHTML === "") {
+        container.innerHTML = "No zones found.";
+    } else {
+        document.getElementById("allSummary").textContent = `All Zones (${zones.length})`;
+    }
+
+    const lazyImages = document.querySelectorAll('img.lazy-zone-img');
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !zoneViewer.hidden) {
+                const img = entry.target;
+                img.src = img.dataset.src;
+                img.classList.remove("lazy-zone-img");
+                observer.unobserve(img);
+            }
+        });
+    }, {
+        rootMargin: "100px", 
+        threshold: 0.1
+    });
+
+    lazyImages.forEach(img => {
+        imageObserver.observe(img);
+    });
+}
+
+function filterZones() {
+    const query = searchBar.value.toLowerCase();
+    const filteredZones = zones.filter(zone => zone.name.toLowerCase().includes(query));
+    if (query.length !== 0) {
+        document.getElementById("featuredZonesWrapper").removeAttribute("open");
+    }
+    displayZones(filteredZones);
+}
+
+function openZone(file) {
+    if (file.url.startsWith("http")) {
+        window.open(file.url, "_blank");
+    } else {
+        const url = file.url.replace("{COVER_URL}", coverURL).replace("{HTML_URL}", htmlURL);
+        fetch(url+"?t="+Date.now()).then(response => response.text()).then(html => {
+            if (zoneFrame.contentDocument === null) {
+                zoneFrame = document.createElement("iframe");
+                zoneFrame.id = "zoneFrame";
+                zoneViewer.appendChild(zoneFrame);
+            }
+            zoneFrame.contentDocument.open();
+            zoneFrame.contentDocument.write(html);
+            zoneFrame.contentDocument.close();
+            document.getElementById('zoneName').textContent = file.name;
+            document.getElementById('zoneId').textContent = file.id;
+            document.getElementById('zoneAuthor').textContent = "by " + file.author;
+            if (file.authorLink) {
+                document.getElementById('zoneAuthor').href = file.authorLink;
+            }
+            zoneViewer.style.display = "block";
+            const url = new URL(window.location);
+            url.searchParams.set('id', file.id);
+            history.pushState(null, '', url.toString());
+            zoneViewer.hidden = true;
+        }).catch(error => alert("Failed to load zone: " + error));
+    }
+}
+
+function aboutBlank() {
+    const newWindow = window.open("about:blank", "_blank");
+    let zone = zones.find(zone => zone.id + '' === document.getElementById('zoneId').textContent).url.replace("{COVER_URL}", coverURL).replace("{HTML_URL}", htmlURL);
+    fetch(zone+"?t="+Date.now()).then(response => response.text()).then(html => {
+        if (newWindow) {
+            newWindow.document.open();
+            newWindow.document.write(html);
+            newWindow.document.close();
+        }
+    })
+}
+
+function closeZone() {
+    zoneViewer.hidden = false;
+    zoneViewer.style.display = "none";
+    zoneViewer.removeChild(zoneFrame);
+    const url = new URL(window.location);
+    url.searchParams.delete('id');
+    history.pushState(null, '', url.toString());
+}
+
+function downloadZone() {
+    let zone = zones.find(zone => zone.id + '' === document.getElementById('zoneId').textContent);
+    fetch(zone.url.replace("{HTML_URL}", htmlURL)+"?t="+Date.now()).then(res => res.text()).then(text => {
+        const blob = new Blob([text], {
+            type: "text/plain;charset=utf-8"
+        });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = zone.name + ".html";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    });
+}
+
+function fullscreenZone() {
+    if (zoneFrame.requestFullscreen) {
+        zoneFrame.requestFullscreen();
+    } else if (zoneFrame.mozRequestFullScreen) {
+        zoneFrame.mozRequestFullScreen();
+    } else if (zoneFrame.webkitRequestFullscreen) {
+        zoneFrame.webkitRequestFullscreen();
+    } else if (zoneFrame.msRequestFullscreen) {
+        zoneFrame.msRequestFullscreen();
+    }
+}
+
+function sanitizeData(obj, maxStringLen = 1000, maxArrayLen = 10000) {
+    if (typeof obj === 'string') {
+      return obj.length > maxStringLen ? obj.slice(0, maxStringLen) + '...[truncated]' : obj;
+    }
+    
+    if (obj instanceof Uint8Array) {
+      if (obj.length > maxArrayLen) {
+        return `[Uint8Array too large (${obj.length} bytes), truncated]`;
+      }
+      return obj;
+    }
+    
+    if (Array.isArray(obj)) {
+      return obj.map(item => sanitizeData(item, maxStringLen, maxArrayLen));
+    }
+    
+    if (obj && typeof obj === 'object') {
+      const newObj = {};
+      for (const key in obj) {
+        if (obj.hasOwnProperty(key)) {
+          newObj[key] = sanitizeData(obj[key], maxStringLen, maxArrayLen);
+        }
+      }
+      return newObj;
+    }
+    
+    return obj;
+  }
+
+async function saveData() {
+    alert("This might take a while, dont touch anything other than this OK button");
+    const result = {};
+    result.cookies = document.cookie;
+    result.localStorage = {...localStorage};
+    result.sessionStorage = {...sessionStorage};
+    result.indexedDB = {};
+    const dbs = await indexedDB.databases();
+    for (const dbInfo of dbs) {
+      if (!dbInfo.name) continue;
+      result.indexedDB[dbInfo.name] = {};
+      await new Promise((resolve, reject) => {
+        const openRequest = indexedDB.open(dbInfo.name, dbInfo.version);
+        openRequest.onerror = () => reject(openRequest.error);
+        openRequest.onsuccess = () => {
+          const db = openRequest.result;
+          const storeNames = Array.from(db.objectStoreNames);
+          if (storeNames.length === 0) {
+            resolve();
+            return;
+          }
+          const transaction = db.transaction(storeNames, "readonly");
+          const storePromises = [];
+          for (const storeName of storeNames) {
+            result.indexedDB[dbInfo.name][storeName] = [];
+            const store = transaction.objectStore(storeName);
+            const getAllRequest = store.getAll();
+            const p = new Promise((res, rej) => {
+              getAllRequest.onsuccess = () => {
+                result.indexedDB[dbInfo.name][storeName] = sanitizeData(getAllRequest.result, 1000, 100);
+                res();
+              };
+              getAllRequest.onerror = () => rej(getAllRequest.error);
+            });
+            storePromises.push(p);
+          }
+          Promise.all(storePromises).then(() => resolve());
+        };
+      });
+    }
+
+    result.caches = {};
+    const cacheNames = await caches.keys();
+    for (const cacheName of cacheNames) {
+      const cache = await caches.open(cacheName);
+      const requests = await cache.keys();
+      result.caches[cacheName] = [];
+      for (const req of requests) {
+        const response = await cache.match(req);
+        if (!response) continue;
+        const cloned = response.clone();
+        const contentType = cloned.headers.get('content-type') || '';
+        let body;
+        try {
+          if (contentType.includes('application/json')) {
+            body = await cloned.json();
+          } else if (contentType.includes('text') || contentType.includes('javascript')) {
+            body = await cloned.text();
+          } else {
+            const buffer = await cloned.arrayBuffer();
+            body = btoa(String.fromCharCode(...new Uint8Array(buffer)));
+          }
+        } catch (e) {
+          body = '[Unable to read body]';
+        }
+        result.caches[cacheName].push({
+          url: req.url,
+          body,
+          contentType
+        });
+      }
+    }
+  
+    alert("Done, wait for the download to come");
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(new Blob([JSON.stringify(result)], {
+        type: "application/octet-stream"
+    }));
+    link.download = `${Date.now()}.data`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+  
+  async function loadData(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = async function (e) {
+        const data = JSON.parse(e.target.result);
+        if (data.cookies) {
+            data.cookies.split(';').forEach(cookie => {
+              document.cookie = cookie.trim();
+            });
+          }
+        
+          if (data.localStorage) {
+            for (const key in data.localStorage) {
+              localStorage.setItem(key, data.localStorage[key]);
+            }
+          }
+        
+          if (data.sessionStorage) {
+            for (const key in data.sessionStorage) {
+              sessionStorage.setItem(key, data.sessionStorage[key]);
+            }
+          }
+        
+          if (data.indexedDB) {
+            for (const dbName in data.indexedDB) {
+              const stores = data.indexedDB[dbName];
+              await new Promise((resolve, reject) => {
+                const request = indexedDB.open(dbName, 1);
+                request.onupgradeneeded = e => {
+                  const db = e.target.result;
+                  for (const storeName in stores) {
+                    if (!db.objectStoreNames.contains(storeName)) {
+                      db.createObjectStore(storeName, { keyPath: 'id', autoIncrement: true });
+                    }
+                  }
+                };
+                request.onsuccess = e => {
+                  const db = e.target.result;
+                  const transaction = db.transaction(Object.keys(stores), 'readwrite');
+                  transaction.onerror = () => reject(transaction.error);
+                  let pendingStores = Object.keys(stores).length;
+        
+                  for (const storeName in stores) {
+                    const objectStore = transaction.objectStore(storeName);
+                    objectStore.clear().onsuccess = () => {
+                      for (const item of stores[storeName]) {
+                        objectStore.put(item);
+                      }
+                      pendingStores--;
+                      if (pendingStores === 0) resolve();
+                    };
+                  }
+                };
+                request.onerror = () => reject(request.error);
+              });
+            }
+          }
+        
+          if (data.caches) {
+            for (const cacheName in data.caches) {
+              const cache = await caches.open(cacheName);
+              await cache.keys().then(keys => Promise.all(keys.map(k => cache.delete(k)))); // clear existing
+        
+              for (const entry of data.caches[cacheName]) {
+                let responseBody;
+                if (entry.contentType.includes('application/json')) {
+                  responseBody = JSON.stringify(entry.body);
+                } else if (entry.contentType.includes('text') || entry.contentType.includes('javascript')) {
+                  responseBody = entry.body;
+                } else {
+                  const binaryStr = atob(entry.body);
+                  const len = binaryStr.length;
+                  const bytes = new Uint8Array(len);
+                  for (let i = 0; i < len; i++) {
+                    bytes[i] = binaryStr.charCodeAt(i);
+                  }
+                  responseBody = bytes.buffer;
+                }
+                const headers = new Headers({ 'content-type': entry.contentType });
+                const response = new Response(responseBody, { headers });
+                await cache.put(entry.url, response);
+              }
+            }
+          }
+        alert("Data loaded");
+    };
+    alert("This might take a while, dont touch anything other than this OK button");
+    reader.readAsText(file);
+  }
+
+function darkMode() {
+    document.body.classList.toggle("dark-mode");
+}
+
+function cloakIcon(url) {
+    const link = document.querySelector("link[rel~='icon']");
+    link.rel = "icon";
+    if ((url+"").trim().length === 0) {
+        link.href = "favicon.png";
+    } else {
+        link.href = url;
+    }
+    document.head.appendChild(link);
+}
+function cloakName(string) {
+    if ((string+"").trim().length === 0) {
+        document.title = "gn-math";
+        return;
+    }
+    document.title = string;
+}
+
+function tabCloak() {
+    closePopup();
+    document.getElementById('popupTitle').textContent = "Tab Cloak";
+    const popupBody = document.getElementById('popupBody');
+    popupBody.innerHTML = `
+        <label for="tab-cloak-textbox" style="font-weight: bold;">Set Tab Title:</label><br>
+        <input type="text" id="tab-cloak-textbox" placeholder="Enter new tab name..." oninput="cloakName(this.value)">
+        <br><br><br><br>
+        <label for="tab-cloak-textbox" style="font-weight: bold;">Set Tab Icon:</label><br>
+        <input type="text" id="tab-cloak-textbox" placeholder="Enter new tab icon..." oninput='cloakIcon(this.value)'>
+        <br><br><br>
+    `;
+    popupBody.contentEditable = false;
+    document.getElementById('popupOverlay').style.display = "flex";
+}
+
+const settings = document.getElementById('settings');
+settings.addEventListener('click', () => {
+    document.getElementById('popupTitle').textContent = "Settings";
+    const popupBody = document.getElementById('popupBody');
+    popupBody.innerHTML = `
+    <button id="settings-button" onclick="darkMode()">Toggle Dark Mode</button>
+    <br><br>
+    <button id="settings-button" onclick="tabCloak()">Tab Cloak</button>
+    <br>
+    `;
+    popupBody.contentEditable = false;
+    document.getElementById('popupOverlay').style.display = "flex";
+});
+
+function showContact() {
+    document.getElementById('popupTitle').textContent = "Contact";
+    const popupBody = document.getElementById('popupBody');
+    popupBody.innerHTML = `
+    <p>Discord: https://discord.gg/NAFw4ykZ7n</p>
+    <p>Email: gn.math.business@gmail.com</p>`;
+    popupBody.contentEditable = false;
+    document.getElementById('popupOverlay').style.display = "flex";
+}
+
+function loadPrivacy() {
+    document.getElementById('popupTitle').textContent = "Privacy Policy";
+    const popupBody = document.getElementById('popupBody');
+    popupBody.innerHTML = `
+        <div style="max-height: 60vh; overflow-y: auto;">
+            <h2>PRIVACY POLICY</h2>
+            <p>Last updated April 17, 2025</p>
+            <p>This Privacy Notice for gn-math ("we," "us," or "our"), describes how and why we might access, collect, store, use, and/or share ("process") your personal information when you use our services ("Services"), including when you:</p>
+            <ul>
+                <li>Visit our website at <a href="https://gn-math.github.io">https://gn-math.github.io</a>, or any website of ours that links to this Privacy Notice</li>
+                <li>Engage with us in other related ways, including any sales, marketing, or events</li>
+            </ul>
+            <p>Questions or concerns? Reading this Privacy Notice will help you understand your privacy rights and choices. We are responsible for making decisions about how your personal information is processed. If you do not agree with our policies and practices, please do not use our Services. If you still have any questions or concerns, please contact us at <a href="https://discord.gg/NAFw4ykZ7n">https://discord.gg/NAFw4ykZ7n</a>.</p>
+            
+            <h3>SUMMARY OF KEY POINTS</h3>
+            <p>This summary provides key points from our Privacy Notice, but you can find out more details about any of these topics by clicking the link following each key point or by using our table of contents below to find the section you are looking for.</p>
+            
+            <p><strong>What personal information do we process?</strong> When you visit, use, or navigate our Services, we may process personal information depending on how you interact with us and the Services, the choices you make, and the products and features you use. Learn more about personal information you disclose to us.</p>
+            
+            <p><strong>Do we process any sensitive personal information?</strong> Some of the information may be considered "special" or "sensitive" in certain jurisdictions, for example your racial or ethnic origins, sexual orientation, and religious beliefs. We do not process sensitive personal information.</p>
+            
+            <p><strong>Do we collect any information from third parties?</strong> We do not collect any information from third parties.</p>
+            
+            <p><strong>How do we process your information?</strong> We process your information to provide, improve, and administer our Services, communicate with you, for security and fraud prevention, and to comply with law. We may also process your information for other purposes with your consent. We process your information only when we have a valid legal reason to do so. Learn more about how we process your information.</p>
+            
+            <p><strong>In what situations and with which parties do we share personal information?</strong> We may share information in specific situations and with specific third parties. Learn more about when and with whom we share your personal information.</p>
+            
+            <p><strong>How do we keep your information safe?</strong> We have adequate organizational and technical processes and procedures in place to protect your personal information. However, no electronic transmission over the internet or information storage technology can be guaranteed to be 100% secure, so we cannot promise or guarantee that hackers, cybercriminals, or other unauthorized third parties will not be able to defeat our security and improperly collect, access, steal, or modify your information. Learn more about how we keep your information safe.</p>
+            
+            <p><strong>What are your rights?</strong> Depending on where you are located geographically, the applicable privacy law may mean you have certain rights regarding your personal information. Learn more about your privacy rights.</p>
+            
+            <p><strong>How do you exercise your rights?</strong> The easiest way to exercise your rights is by submitting a data subject access request, or by contacting us. We will consider and act upon any request in accordance with applicable data protection laws.</p>
+        </div>
+    `;
+    popupBody.contentEditable = false;
+    document.getElementById('popupOverlay').style.display = "flex";
+}
+
+function loadDMCA() {
+    document.getElementById('popupTitle').textContent = "DMCA";
+    const popupBody = document.getElementById('popupBody');
+    popupBody.innerHTML = `
+        <div class="dmca-content">
+            <p>
+                If you own or developed a game that is on <strong>gn-math</strong> 
+                and would like it removed, please do one of the following:
+            </p>
+            <ol>
+                <li>
+                    <a href="https://discord.gg/D4c9VFYWyU" target="_blank" rel="noopener noreferrer">
+                        Join the Discord
+                    </a> and DM <strong>breadbb</strong> or ping me in a public channel 
+                    <strong>[INSTANT RESPONSE]</strong>
+                </li>
+                <li>
+                    Email me at 
+                    <a href="mailto:gn.math.business@gmail.com">gn.math.business@gmail.com</a> 
+                    with the subject starting with <code>!DMCA</code>.
+                    <strong>[DELAYED RESPONSE]</strong>
+                </li>
+            </ol>
+            <p>
+                If you are going to do an email, please show proof you own the game before I have to ask.
+            </p>
+        </div>
+    `;
+    popupBody.contentEditable = false;
+    document.getElementById('popupOverlay').style.display = "flex";
+}
+
+function closePopup() {
+    document.getElementById('popupOverlay').style.display = "none";
+}
+listZones();
+
+const schoolList = ["deledao", "goguardian", "lightspeed", "linewize", "securly", ".edu/"];
+
+function isBlockedDomain(url) {
+    const domain = new URL(url, location.origin).hostname + "/";
+    return schoolList.some(school => domain.includes(school));
+}
+
+const originalFetch = window.fetch;
+window.fetch = function (url, options) {
+    if (isBlockedDomain(url)) {
+        console.warn(`lam`);
+        return Promise.reject(new Error("lam"));
+    }
+    return originalFetch.apply(this, arguments);
+};
+
+const originalOpen = XMLHttpRequest.prototype.open;
+XMLHttpRequest.prototype.open = function (method, url) {
+    if (isBlockedDomain(url)) {
+        console.warn(`lam`);
+        return;
+    }
+    return originalOpen.apply(this, arguments);
+};
+
+HTMLCanvasElement.prototype.toDataURL = function (...args) {
+    return "";
+};
+		</script>
+	</body>
+
+	</html>
+	<script type="text/javascript">
+		(function () {
+  'use strict'; function aa(a) { var b = 0; return function () { return b < a.length ? { done: !1, value: a[b++] } : { done: !0 } } } var ba = typeof Object.defineProperties == "function" ? Object.defineProperty : function (a, b, c) { if (a == Array.prototype || a == Object.prototype) return a; a[b] = c.value; return a };
+  function ca(a) { a = ["object" == typeof globalThis && globalThis, a, "object" == typeof window && window, "object" == typeof self && self, "object" == typeof global && global]; for (var b = 0; b < a.length; ++b) { var c = a[b]; if (c && c.Math == Math) return c } throw Error("Cannot find global object"); } var da = ca(this); function l(a, b) { if (b) a: { var c = da; a = a.split("."); for (var d = 0; d < a.length - 1; d++) { var e = a[d]; if (!(e in c)) break a; c = c[e] } a = a[a.length - 1]; d = c[a]; b = b(d); b != d && b != null && ba(c, a, { configurable: !0, writable: !0, value: b }) } }
+  function ea(a) { return a.raw = a } function n(a) { var b = typeof Symbol != "undefined" && Symbol.iterator && a[Symbol.iterator]; if (b) return b.call(a); if (typeof a.length == "number") return { next: aa(a) }; throw Error(String(a) + " is not an iterable or ArrayLike"); } function fa(a) { for (var b, c = []; !(b = a.next()).done;)c.push(b.value); return c } var ha = typeof Object.create == "function" ? Object.create : function (a) { function b() { } b.prototype = a; return new b }, p;
+  if (typeof Object.setPrototypeOf == "function") p = Object.setPrototypeOf; else { var q; a: { var ja = { a: !0 }, ka = {}; try { ka.__proto__ = ja; q = ka.a; break a } catch (a) { } q = !1 } p = q ? function (a, b) { a.__proto__ = b; if (a.__proto__ !== b) throw new TypeError(a + " is not extensible"); return a } : null } var la = p;
+  function t(a, b) { a.prototype = ha(b.prototype); a.prototype.constructor = a; if (la) la(a, b); else for (var c in b) if (c != "prototype") if (Object.defineProperties) { var d = Object.getOwnPropertyDescriptor(b, c); d && Object.defineProperty(a, c, d) } else a[c] = b[c]; a.A = b.prototype } function ma() { for (var a = Number(this), b = [], c = a; c < arguments.length; c++)b[c - a] = arguments[c]; return b } l("Object.is", function (a) { return a ? a : function (b, c) { return b === c ? b !== 0 || 1 / b === 1 / c : b !== b && c !== c } });
+  l("Array.prototype.includes", function (a) { return a ? a : function (b, c) { var d = this; d instanceof String && (d = String(d)); var e = d.length; c = c || 0; for (c < 0 && (c = Math.max(c + e, 0)); c < e; c++) { var f = d[c]; if (f === b || Object.is(f, b)) return !0 } return !1 } });
+  l("String.prototype.includes", function (a) { return a ? a : function (b, c) { if (this == null) throw new TypeError("The 'this' value for String.prototype.includes must not be null or undefined"); if (b instanceof RegExp) throw new TypeError("First argument to String.prototype.includes must not be a regular expression"); return this.indexOf(b, c || 0) !== -1 } }); l("Number.MAX_SAFE_INTEGER", function () { return 9007199254740991 });
+  l("Number.isFinite", function (a) { return a ? a : function (b) { return typeof b !== "number" ? !1 : !isNaN(b) && b !== Infinity && b !== -Infinity } }); l("Number.isInteger", function (a) { return a ? a : function (b) { return Number.isFinite(b) ? b === Math.floor(b) : !1 } }); l("Number.isSafeInteger", function (a) { return a ? a : function (b) { return Number.isInteger(b) && Math.abs(b) <= Number.MAX_SAFE_INTEGER } });
+  l("Math.trunc", function (a) { return a ? a : function (b) { b = Number(b); if (isNaN(b) || b === Infinity || b === -Infinity || b === 0) return b; var c = Math.floor(Math.abs(b)); return b < 0 ? -c : c } });/*
+
+ Copyright The Closure Library Authors.
+ SPDX-License-Identifier: Apache-2.0
+*/
+  var u = this || self; function v(a, b) { a: { var c = ["CLOSURE_FLAGS"]; for (var d = u, e = 0; e < c.length; e++)if (d = d[c[e]], d == null) { c = null; break a } c = d } a = c && c[a]; return a != null ? a : b } function w(a) { return a }; function na(a) { u.setTimeout(function () { throw a; }, 0) }; var oa = v(610401301, !1), pa = v(188588736, !0), qa = v(645172343, v(1, !0)); var x, ra = u.navigator; x = ra ? ra.userAgentData || null : null; function z(a) { return oa ? x ? x.brands.some(function (b) { return (b = b.brand) && b.indexOf(a) != -1 }) : !1 : !1 } function A(a) { var b; a: { if (b = u.navigator) if (b = b.userAgent) break a; b = "" } return b.indexOf(a) != -1 }; function B() { return oa ? !!x && x.brands.length > 0 : !1 } function C() { return B() ? z("Chromium") : (A("Chrome") || A("CriOS")) && !(B() ? 0 : A("Edge")) || A("Silk") }; var sa = B() ? !1 : A("Trident") || A("MSIE"); !A("Android") || C(); C(); A("Safari") && (C() || (B() ? 0 : A("Coast")) || (B() ? 0 : A("Opera")) || (B() ? 0 : A("Edge")) || (B() ? z("Microsoft Edge") : A("Edg/")) || B() && z("Opera")); var ta = {}, D = null; var ua = typeof Uint8Array !== "undefined", va = !sa && typeof btoa === "function"; var wa; function E() { return typeof BigInt === "function" }; var F = typeof Symbol === "function" && typeof Symbol() === "symbol"; function xa(a) { return typeof Symbol === "function" && typeof Symbol() === "symbol" ? Symbol() : a } var G = xa(), ya = xa("2ex"); var za = F ? function (a, b) { a[G] |= b } : function (a, b) { a.g !== void 0 ? a.g |= b : Object.defineProperties(a, { g: { value: b, configurable: !0, writable: !0, enumerable: !1 } }) }, H = F ? function (a) { return a[G] | 0 } : function (a) { return a.g | 0 }, I = F ? function (a) { return a[G] } : function (a) { return a.g }, J = F ? function (a, b) { a[G] = b } : function (a, b) { a.g !== void 0 ? a.g = b : Object.defineProperties(a, { g: { value: b, configurable: !0, writable: !0, enumerable: !1 } }) }; function Aa(a, b) { J(b, (a | 0) & -14591) } function Ba(a, b) { J(b, (a | 34) & -14557) }; var K = {}, Ca = {}; function Da(a) { return !(!a || typeof a !== "object" || a.g !== Ca) } function Ea(a) { return a !== null && typeof a === "object" && !Array.isArray(a) && a.constructor === Object } function L(a, b, c) { if (!Array.isArray(a) || a.length) return !1; var d = H(a); if (d & 1) return !0; if (!(b && (Array.isArray(b) ? b.includes(c) : b.has(c)))) return !1; J(a, d | 1); return !0 }; var M = 0, N = 0; function Fa(a) { var b = a >>> 0; M = b; N = (a - b) / 4294967296 >>> 0 } function Ga(a) { if (a < 0) { Fa(-a); var b = n(Ha(M, N)); a = b.next().value; b = b.next().value; M = a >>> 0; N = b >>> 0 } else Fa(a) } function Ia(a, b) { b >>>= 0; a >>>= 0; if (b <= 2097151) var c = "" + (4294967296 * b + a); else E() ? c = "" + (BigInt(b) << BigInt(32) | BigInt(a)) : (c = (a >>> 24 | b << 8) & 16777215, b = b >> 16 & 65535, a = (a & 16777215) + c * 6777216 + b * 6710656, c += b * 8147497, b *= 2, a >= 1E7 && (c += a / 1E7 >>> 0, a %= 1E7), c >= 1E7 && (b += c / 1E7 >>> 0, c %= 1E7), c = b + Ja(c) + Ja(a)); return c }
+  function Ja(a) { a = String(a); return "0000000".slice(a.length) + a } function Ha(a, b) { b = ~b; a ? a = ~a + 1 : b += 1; return [a, b] }; var Ka = /^-?([1-9][0-9]*|0)(\.[0-9]+)?$/; var O; function La(a, b) { O = b; a = new a(b); O = void 0; return a }
+  function P(a, b, c) {
+  a == null && (a = O); O = void 0; if (a == null) { var d = 96; c ? (a = [c], d |= 512) : a = []; b && (d = d & -16760833 | (b & 1023) << 14) } else {
+    if (!Array.isArray(a)) throw Error("narr"); d = H(a); if (d & 2048) throw Error("farr"); if (d & 64) return a; d |= 64; if (c && (d |= 512, c !== a[0])) throw Error("mid"); a: {
+      c = a; var e = c.length; if (e) { var f = e - 1; if (Ea(c[f])) { d |= 256; b = f - (+!!(d & 512) - 1); if (b >= 1024) throw Error("pvtlmt"); d = d & -16760833 | (b & 1023) << 14; break a } } if (b) {
+        b = Math.max(b, e - (+!!(d & 512) - 1)); if (b > 1024) throw Error("spvt"); d = d & -16760833 | (b & 1023) <<
+          14
+      }
+    }
+  } J(a, d); return a
+  }; function Ma(a) {
+    switch (typeof a) {
+      case "number": return isFinite(a) ? a : String(a); case "boolean": return a ? 1 : 0; case "object": if (a) if (Array.isArray(a)) { if (L(a, void 0, 0)) return } else if (ua && a != null && a instanceof Uint8Array) {
+        if (va) { for (var b = "", c = 0, d = a.length - 10240; c < d;)b += String.fromCharCode.apply(null, a.subarray(c, c += 10240)); b += String.fromCharCode.apply(null, c ? a.subarray(c) : a); a = btoa(b) } else {
+        b === void 0 && (b = 0); if (!D) {
+          D = {}; c = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789".split(""); d = ["+/=",
+            "+/", "-_=", "-_.", "-_"]; for (var e = 0; e < 5; e++) { var f = c.concat(d[e].split("")); ta[e] = f; for (var g = 0; g < f.length; g++) { var h = f[g]; D[h] === void 0 && (D[h] = g) } }
+        } b = ta[b]; c = Array(Math.floor(a.length / 3)); d = b[64] || ""; for (e = f = 0; f < a.length - 2; f += 3) { var k = a[f], m = a[f + 1]; h = a[f + 2]; g = b[k >> 2]; k = b[(k & 3) << 4 | m >> 4]; m = b[(m & 15) << 2 | h >> 6]; h = b[h & 63]; c[e++] = g + k + m + h } g = 0; h = d; switch (a.length - f) { case 2: g = a[f + 1], h = b[(g & 15) << 2] || d; case 1: a = a[f], c[e] = b[a >> 2] + b[(a & 3) << 4 | g >> 4] + h + d }a = c.join("")
+        } return a
+      }
+    }return a
+  }; function Na(a, b, c) { a = Array.prototype.slice.call(a); var d = a.length, e = b & 256 ? a[d - 1] : void 0; d += e ? -1 : 0; for (b = b & 512 ? 1 : 0; b < d; b++)a[b] = c(a[b]); if (e) { b = a[b] = {}; for (var f in e) Object.prototype.hasOwnProperty.call(e, f) && (b[f] = c(e[f])) } return a } function Oa(a, b, c, d, e) { if (a != null) { if (Array.isArray(a)) a = L(a, void 0, 0) ? void 0 : e && H(a) & 2 ? a : Pa(a, b, c, d !== void 0, e); else if (Ea(a)) { var f = {}, g; for (g in a) Object.prototype.hasOwnProperty.call(a, g) && (f[g] = Oa(a[g], b, c, d, e)); a = f } else a = b(a, d); return a } }
+  function Pa(a, b, c, d, e) { var f = d || c ? H(a) : 0; d = d ? !!(f & 32) : void 0; a = Array.prototype.slice.call(a); for (var g = 0; g < a.length; g++)a[g] = Oa(a[g], b, c, d, e); c && c(f, a); return a } function Qa(a) { return a.s === K ? a.toJSON() : Ma(a) }; function Ra(a, b, c) { c = c === void 0 ? Ba : c; if (a != null) { if (ua && a instanceof Uint8Array) return b ? a : new Uint8Array(a); if (Array.isArray(a)) { var d = H(a); if (d & 2) return a; b && (b = d === 0 || !!(d & 32) && !(d & 64 || !(d & 16))); return b ? (J(a, (d | 34) & -12293), a) : Pa(a, Ra, d & 4 ? Ba : c, !0, !0) } a.s === K && (c = a.h, d = I(c), a = d & 2 ? a : La(a.constructor, Sa(c, d, !0))); return a } } function Sa(a, b, c) { var d = c || b & 2 ? Ba : Aa, e = !!(b & 32); a = Na(a, b, function (f) { return Ra(f, e, d) }); za(a, 32 | (c ? 2 : 0)); return a }; function Ta(a, b) { a = a.h; return Ua(a, I(a), b) } function Va(a, b, c, d) { b = d + (+!!(b & 512) - 1); if (!(b < 0 || b >= a.length || b >= c)) return a[b] }
+  function Ua(a, b, c, d) { if (c === -1) return null; var e = b >> 14 & 1023 || 536870912; if (c >= e) { if (b & 256) return a[a.length - 1][c] } else { var f = a.length; if (d && b & 256 && (d = a[f - 1][c], d != null)) { if (Va(a, b, e, c) && ya != null) { var g; a = (g = wa) != null ? g : wa = {}; g = a[ya] || 0; g >= 4 || (a[ya] = g + 1, g = Error(), g.__closure__error__context__984382 || (g.__closure__error__context__984382 = {}), g.__closure__error__context__984382.severity = "incident", na(g)) } return d } return Va(a, b, e, c) } }
+  function Wa(a, b, c, d, e) { var f = b >> 14 & 1023 || 536870912; if (c >= f || e && !qa) { var g = b; if (b & 256) e = a[a.length - 1]; else { if (d == null) return; e = a[f + (+!!(b & 512) - 1)] = {}; g |= 256 } e[c] = d; c < f && (a[c + (+!!(b & 512) - 1)] = void 0); g !== b && J(a, g) } else a[c + (+!!(b & 512) - 1)] = d, b & 256 && (a = a[a.length - 1], c in a && delete a[c]) }
+  function Xa(a, b) { var c = Ya; var d = d === void 0 ? !1 : d; var e = a.h; var f = I(e), g = Ua(e, f, b, d); if (g != null && typeof g === "object" && g.s === K) c = g; else if (Array.isArray(g)) { var h = H(g), k = h; k === 0 && (k |= f & 32); k |= f & 2; k !== h && J(g, k); c = new c(g) } else c = void 0; c !== g && c != null && Wa(e, f, b, c, d); e = c; if (e == null) return e; a = a.h; f = I(a); f & 2 || (g = e, c = g.h, h = I(c), g = h & 2 ? La(g.constructor, Sa(c, h, !1)) : g, g !== e && (e = g, Wa(a, f, b, e, d))); return e } function Za(a, b) { a = Ta(a, b); return a == null || typeof a === "string" ? a : void 0 }
+  function $a(a, b) {
+    var c = c === void 0 ? 0 : c; a = Ta(a, b); if (a != null) if (b = typeof a, b === "number" ? Number.isFinite(a) : b !== "string" ? 0 : Ka.test(a)) if (typeof a === "number") { if (a = Math.trunc(a), !Number.isSafeInteger(a)) { Ga(a); b = M; var d = N; if (a = d & 2147483648) b = ~b + 1 >>> 0, d = ~d >>> 0, b == 0 && (d = d + 1 >>> 0); b = d * 4294967296 + (b >>> 0); a = a ? -b : b } } else if (b = Math.trunc(Number(a)), Number.isSafeInteger(b)) a = String(b); else {
+      if (b = a.indexOf("."), b !== -1 && (a = a.substring(0, b)), !(a[0] === "-" ? a.length < 20 || a.length === 20 && Number(a.substring(0, 7)) > -922337 :
+        a.length < 19 || a.length === 19 && Number(a.substring(0, 6)) < 922337)) {
+          if (a.length < 16) Ga(Number(a)); else if (E()) a = BigInt(a), M = Number(a & BigInt(4294967295)) >>> 0, N = Number(a >> BigInt(32) & BigInt(4294967295)); else { b = +(a[0] === "-"); N = M = 0; d = a.length; for (var e = b, f = (d - b) % 6 + b; f <= d; e = f, f += 6)e = Number(a.slice(e, f)), N *= 1E6, M = M * 1E6 + e, M >= 4294967296 && (N += Math.trunc(M / 4294967296), N >>>= 0, M >>>= 0); b && (b = n(Ha(M, N)), a = b.next().value, b = b.next().value, M = a, N = b) } a = M; b = N; b & 2147483648 ? E() ? a = "" + (BigInt(b | 0) << BigInt(32) | BigInt(a >>> 0)) : (b =
+            n(Ha(a, b)), a = b.next().value, b = b.next().value, a = "-" + Ia(a, b)) : a = Ia(a, b)
+      }
+    } else a = void 0; return a != null ? a : c
+  } function R(a, b) { var c = c === void 0 ? "" : c; a = Za(a, b); return a != null ? a : c }; var S; function T(a, b, c) { this.h = P(a, b, c) } T.prototype.toJSON = function () { return ab(this) }; T.prototype.s = K; T.prototype.toString = function () { try { return S = !0, ab(this).toString() } finally { S = !1 } };
+  function ab(a) {
+    var b = S ? a.h : Pa(a.h, Qa, void 0, void 0, !1); var c = !S; var d = pa ? void 0 : a.constructor.v; var e = I(c ? a.h : b); if (a = b.length) {
+      var f = b[a - 1], g = Ea(f); g ? a-- : f = void 0; e = +!!(e & 512) - 1; var h = b; if (g) { b: { var k = f; var m = {}; g = !1; if (k) for (var r in k) if (Object.prototype.hasOwnProperty.call(k, r)) if (isNaN(+r)) m[r] = k[r]; else { var y = k[r]; Array.isArray(y) && (L(y, d, +r) || Da(y) && y.size === 0) && (y = null); y == null && (g = !0); y != null && (m[r] = y) } if (g) { for (var Q in m) break b; m = null } else m = k } k = m == null ? f != null : m !== f } for (var ia; a > 0; a--) {
+        Q =
+        a - 1; r = h[Q]; Q -= e; if (!(r == null || L(r, d, Q) || Da(r) && r.size === 0)) break; ia = !0
+      } if (h !== b || k || ia) { if (!c) h = Array.prototype.slice.call(h, 0, a); else if (ia || k || m) h.length = a; m && h.push(m) } b = h
+    } return b
+  }; function bb(a) { return function (b) { if (b == null || b == "") b = new a; else { b = JSON.parse(b); if (!Array.isArray(b)) throw Error("dnarr"); za(b, 32); b = La(a, b) } return b } }; function cb(a) { this.h = P(a) } t(cb, T); var db = bb(cb); var U; function V(a) { this.g = a } V.prototype.toString = function () { return this.g + "" }; var eb = {}; function fb(a) { if (U === void 0) { var b = null; var c = u.trustedTypes; if (c && c.createPolicy) { try { b = c.createPolicy("goog#html", { createHTML: w, createScript: w, createScriptURL: w }) } catch (d) { u.console && u.console.error(d.message) } U = b } else U = b } a = (b = U) ? b.createScriptURL(a) : a; return new V(a, eb) };/*
+
+ SPDX-License-Identifier: Apache-2.0
+*/
+  function gb(a) { var b = ma.apply(1, arguments); if (b.length === 0) return fb(a[0]); for (var c = a[0], d = 0; d < b.length; d++)c += encodeURIComponent(b[d]) + a[d + 1]; return fb(c) }; function hb(a, b) { a.src = b instanceof V && b.constructor === V ? b.g : "type_error:TrustedResourceUrl"; var c, d; (c = (b = (d = (c = (a.ownerDocument && a.ownerDocument.defaultView || window).document).querySelector) == null ? void 0 : d.call(c, "script[nonce]")) ? b.nonce || b.getAttribute("nonce") || "" : "") && a.setAttribute("nonce", c) }; function ib() { return Math.floor(Math.random() * 2147483648).toString(36) + Math.abs(Math.floor(Math.random() * 2147483648) ^ Date.now()).toString(36) }; function jb(a, b) { b = String(b); a.contentType === "application/xhtml+xml" && (b = b.toLowerCase()); return a.createElement(b) } function kb(a) { this.g = a || u.document || document }; function lb(a) { a = a === void 0 ? document : a; return a.createElement("script") }; function mb(a, b, c, d, e, f) { try { var g = a.g, h = lb(g); h.async = !0; hb(h, b); g.head.appendChild(h); h.addEventListener("load", function () { e(); d && g.head.removeChild(h) }); h.addEventListener("error", function () { c > 0 ? mb(a, b, c - 1, d, e, f) : (d && g.head.removeChild(h), f()) }) } catch (k) { f() } }; var nb = u.atob("aHR0cHM6Ly93d3cuZ3N0YXRpYy5jb20vaW1hZ2VzL2ljb25zL21hdGVyaWFsL3N5c3RlbS8xeC93YXJuaW5nX2FtYmVyXzI0ZHAucG5n"), ob = u.atob("WW91IGFyZSBzZWVpbmcgdGhpcyBtZXNzYWdlIGJlY2F1c2UgYWQgb3Igc2NyaXB0IGJsb2NraW5nIHNvZnR3YXJlIGlzIGludGVyZmVyaW5nIHdpdGggdGhpcyBwYWdlLg=="), pb = u.atob("RGlzYWJsZSBhbnkgYWQgb3Igc2NyaXB0IGJsb2NraW5nIHNvZnR3YXJlLCB0aGVuIHJlbG9hZCB0aGlzIHBhZ2Uu"); function qb(a, b, c) { this.i = a; this.u = b; this.o = c; this.g = null; this.j = []; this.m = !1; this.l = new kb(this.i) }
+  function rb(a) { if (a.i.body && !a.m) { var b = function () { sb(a); u.setTimeout(function () { tb(a, 3) }, 50) }; mb(a.l, a.u, 2, !0, function () { u[a.o] || b() }, b); a.m = !0 } }
+  function sb(a) {
+    for (var b = W(1, 5), c = 0; c < b; c++) { var d = X(a); a.i.body.appendChild(d); a.j.push(d) } b = X(a); b.style.bottom = "0"; b.style.left = "0"; b.style.position = "fixed"; b.style.width = W(100, 110).toString() + "%"; b.style.zIndex = W(2147483544, 2147483644).toString(); b.style.backgroundColor = ub(249, 259, 242, 252, 219, 229); b.style.boxShadow = "0 0 12px #888"; b.style.color = ub(0, 10, 0, 10, 0, 10); b.style.display = "flex"; b.style.justifyContent = "center"; b.style.fontFamily = "Roboto, Arial"; c = X(a); c.style.width = W(80, 85).toString() +
+      "%"; c.style.maxWidth = W(750, 775).toString() + "px"; c.style.margin = "24px"; c.style.display = "flex"; c.style.alignItems = "flex-start"; c.style.justifyContent = "center"; d = jb(a.l.g, "IMG"); d.className = ib(); d.src = nb; d.alt = "Warning icon"; d.style.height = "24px"; d.style.width = "24px"; d.style.paddingRight = "16px"; var e = X(a), f = X(a); f.style.fontWeight = "bold"; f.textContent = ob; var g = X(a); g.textContent = pb; Y(a, e, f); Y(a, e, g); Y(a, c, d); Y(a, c, e); Y(a, b, c); a.g = b; a.i.body.appendChild(a.g); b = W(1, 5); for (c = 0; c < b; c++)d = X(a), a.i.body.appendChild(d),
+        a.j.push(d)
+  } function Y(a, b, c) { for (var d = W(1, 5), e = 0; e < d; e++) { var f = X(a); b.appendChild(f) } b.appendChild(c); c = W(1, 5); for (d = 0; d < c; d++)e = X(a), b.appendChild(e) } function W(a, b) { return Math.floor(a + Math.random() * (b - a)) } function ub(a, b, c, d, e, f) { return "rgb(" + W(Math.max(a, 0), Math.min(b, 255)).toString() + "," + W(Math.max(c, 0), Math.min(d, 255)).toString() + "," + W(Math.max(e, 0), Math.min(f, 255)).toString() + ")" } function X(a) { a = jb(a.l.g, "DIV"); a.className = ib(); return a }
+  function tb(a, b) { b <= 0 || a.g != null && a.g.offsetHeight !== 0 && a.g.offsetWidth !== 0 || (vb(a), sb(a), u.setTimeout(function () { tb(a, b - 1) }, 50)) } function vb(a) { for (var b = n(a.j), c = b.next(); !c.done; c = b.next())(c = c.value) && c.parentNode && c.parentNode.removeChild(c); a.j = []; (b = a.g) && b.parentNode && b.parentNode.removeChild(b); a.g = null }; function wb(a, b, c, d, e) { function f(k) { document.body ? g(document.body) : k > 0 ? u.setTimeout(function () { f(k - 1) }, e) : b() } function g(k) { k.appendChild(h); u.setTimeout(function () { h ? (h.offsetHeight !== 0 && h.offsetWidth !== 0 ? b() : a(), h.parentNode && h.parentNode.removeChild(h)) : a() }, d) } var h = xb(c); f(3) } function xb(a) { var b = document.createElement("div"); b.className = a; b.style.width = "1px"; b.style.height = "1px"; b.style.position = "absolute"; b.style.left = "-10000px"; b.style.top = "-10000px"; b.style.zIndex = "-10000"; return b }; function Ya(a) { this.h = P(a) } t(Ya, T); function yb(a) { this.h = P(a) } t(yb, T); var zb = bb(yb); function Ab(a) { if (!a) return null; a = Za(a, 4); var b; a === null || a === void 0 ? b = null : b = fb(a); return b }; var Bb = ea([""]), Cb = ea([""]); function Db(a, b) { this.m = a; this.o = new kb(a.document); this.g = b; this.j = R(this.g, 1); this.u = Ab(Xa(this.g, 2)) || gb(Bb); this.i = !1; b = Ab(Xa(this.g, 13)) || gb(Cb); this.l = new qb(a.document, b, R(this.g, 12)) } Db.prototype.start = function () { Eb(this) };
+  function Eb(a) { Fb(a); mb(a.o, a.u, 3, !1, function () { a: { var b = a.j; var c = u.btoa(b); if (c = u[c]) { try { var d = db(u.atob(c)) } catch (e) { b = !1; break a } b = b === Za(d, 1) } else b = !1 } b ? Z(a, R(a.g, 14)) : (Z(a, R(a.g, 8)), rb(a.l)) }, function () { wb(function () { Z(a, R(a.g, 7)); rb(a.l) }, function () { return Z(a, R(a.g, 6)) }, R(a.g, 9), $a(a.g, 10), $a(a.g, 11)) }) } function Z(a, b) { a.i || (a.i = !0, a = new a.m.XMLHttpRequest, a.open("GET", b, !0), a.send()) } function Fb(a) { var b = u.btoa(a.j); a.m[b] && Z(a, R(a.g, 5)) }; (function (a, b) { u[a] = function () { var c = ma.apply(0, arguments); u[a] = function () { }; b.call.apply(b, [null].concat(c instanceof Array ? c : fa(n(c)))) } })("__h82AlnkH6D91__", function (a) { typeof window.atob === "function" && (new Db(window, zb(window.atob(a)))).start() });
+}).call(this);
+
+window.__h82AlnkH6D91__("WyJwdWItNTUyMTIxOTA4NjA4ODgzNyIsW251bGwsbnVsbCxudWxsLCJodHRwczovL2Z1bmRpbmdjaG9pY2VzbWVzc2FnZXMuZ29vZ2xlLmNvbS9iL3B1Yi01NTIxMjE5MDg2MDg4ODM3Il0sbnVsbCxudWxsLCJodHRwczovL2Z1bmRpbmdjaG9pY2VzbWVzc2FnZXMuZ29vZ2xlLmNvbS9lbC9BR1NLV3hVVklJMjdES3VfcWw2SHNWQVZkT1VndHZ0X3JacVVWUk9pMi1ZbUtHZ0R2c0lPbDBtMnJrbC1sc1dBSFY0dUFZN0NYQjA5OWxoS1VWMmRsdGVqYURnazdnXHUwMDNkXHUwMDNkP3RlXHUwMDNkVE9LRU5fRVhQT1NFRCIsImh0dHBzOi8vZnVuZGluZ2Nob2ljZXNtZXNzYWdlcy5nb29nbGUuY29tL2VsL0FHU0tXeFVkSjcyR2F2enBqWlp0T1MyT3YteHpRRy01UXZTbnBQaDhCdkVuRlRERFlMajFlT21XTVNiX0M5YjFjUDhWTFhpeVV4UW5KN0lYREVEVUxXb3pzczdlcFFcdTAwM2RcdTAwM2Q/YWJcdTAwM2QxXHUwMDI2c2JmXHUwMDNkMSIsImh0dHBzOi8vZnVuZGluZ2Nob2ljZXNtZXNzYWdlcy5nb29nbGUuY29tL2VsL0FHU0tXeFg4c0JQWkRfUHV2M3ZaLWtuWm1yeGpnMEE3R3hsRFcyYXZHSDgzYlNvS0NEendicjNYVHJVMGF0Vm55UnRJdzZCNGxRWjdXQjd6ZDdoUjgtNVFIcTFpT1FcdTAwM2RcdTAwM2Q/YWJcdTAwM2QyXHUwMDI2c2JmXHUwMDNkMSIsImh0dHBzOi8vZnVuZGluZ2Nob2ljZXNtZXNzYWdlcy5nb29nbGUuY29tL2VsL0FHU0tXeFhLaDVLczZRcFlsdTZ4OHZvYlM5NzIxSkdZcnZCZGx1TzJYV0dDR3VfaUJCQnBpdFR6LV9wckcxLXZqYi1SUVU3d2I4RXdJSmRnVDBxOUtmR2ZkNEN5akFcdTAwM2RcdTAwM2Q/c2JmXHUwMDNkMiIsImRpdi1ncHQtYWQiLDIwLDEwMCwiY0hWaUxUVTFNakV5TVRrd09EWXdPRGc0TXpjXHUwMDNkIixbbnVsbCxudWxsLG51bGwsImh0dHBzOi8vd3d3LmdzdGF0aWMuY29tLzBlbW4vZi9wL3B1Yi01NTIxMjE5MDg2MDg4ODM3LmpzP3VzcXBcdTAwM2RDQUkiXSwiaHR0cHM6Ly9mdW5kaW5nY2hvaWNlc21lc3NhZ2VzLmdvb2dsZS5jb20vZWwvQUdTS1d4WGdfNFREZWRKcVoySmFPREJITTlhY09Tb0k5UWxFaUpOR0cyNUFQRmpoY3dlTTFVYTItRWVsQno3a2wySjFnRzBtdldCcjlTUVowMDhfT1JnUHpCb052Z1x1MDAzZFx1MDAzZCJd");
+
+
+	</script>
+</body>
+<html>
