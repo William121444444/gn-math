@@ -111,7 +111,7 @@ if(($_SESSION['role']??'')==='blocked'){
 <title>GN Math Portal</title>
 <style>
 body{margin:0;font-family:Arial;background:linear-gradient(135deg,#1e1e2f,#2c2c54);color:#fff;}
-.admin-panel{position:fixed;top:50px;left:20px;width:300px;background:#111;padding:15px;border-radius:10px;max-height:90vh;overflow:auto;z-index:9999;cursor:move;transition:transform 0.3s;}
+.admin-panel{position:fixed;top:50px;left:20px;width:300px;background:#111;padding:15px;border-radius:10px;max-height:90vh;overflow:auto;z-index:9999;cursor:grab;transition:transform 0.3s;}
 .admin-panel.closed{transform:translateX(-320px);}
 button{margin:3px;padding:6px 8px;background:#fc2651;color:#fff;border:none;border-radius:5px;cursor:pointer;}
 .overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:#000;display:flex;justify-content:center;align-items:center;z-index:9998;}
@@ -165,9 +165,25 @@ button{margin:3px;padding:6px 8px;background:#fc2651;color:#fff;border:none;bord
 <!-- Soundboard -->
 <h4>Soundboard</h4>
 <form method="POST">
-<button name="sound" value="https://www.myinstants.com/media/sounds/rip-my-granny-loud-asf.mp3">💀 Granny</button>
-<button name="sound" value="https://www.myinstants.com/media/sounds/hi-hi-hi-ha.mp3">😂 Clash</button>
+<select name="sound" onchange="this.form.submit()">
+<option value="">Select Sound</option>
+<option value="https://www.myinstants.com/media/sounds/rip-my-granny-loud-asf.mp3">💀 Granny</option>
+<option value="https://www.myinstants.com/media/sounds/hi-hi-hi-ha.mp3">😂 Clash</option>
+</select>
 </form>
+
+<!-- Image Display -->
+<h4>Image Display</h4>
+<form method="POST">
+<select name="display_image" onchange="this.form.submit()">
+<option value="">Select Image</option>
+<option value="https://i.imgur.com/4M7IWwP.jpeg">Meme 1</option>
+<option value="https://i.imgur.com/l9W7JQo.jpeg">Meme 2</option>
+<option value="https://i.imgur.com/1X5Iu2t.jpeg">Meme 3</option>
+</select>
+<button name="stop_image" value="1">Stop</button>
+</form>
+
 </div>
 <?php endif; ?>
 
@@ -176,7 +192,9 @@ button{margin:3px;padding:6px 8px;background:#fc2651;color:#fff;border:none;bord
 <!-- IMAGE OVERLAY -->
 <?php if($imageOverlay): ?>
 <div class="overlay" id="imageOverlay"><img src="<?php echo htmlspecialchars($imageOverlay); ?>"/></div>
-<script>setTimeout(()=>{document.getElementById('imageOverlay').style.display='none';},4000);</script>
+<script>
+setTimeout(()=>{document.getElementById('imageOverlay').style.display='none';},4000);
+</script>
 <?php endif; ?>
 
 <!-- GLOBAL SOUND -->
@@ -185,18 +203,25 @@ button{margin:3px;padding:6px 8px;background:#fc2651;color:#fff;border:none;bord
 <?php endif; ?>
 
 <script>
+document.addEventListener('DOMContentLoaded',()=>{
+
 // TTS
 let text=<?php echo json_encode($ttsText); ?>;
 if(text.trim()!=="") speechSynthesis.speak(new SpeechSynthesisUtterance(text));
 
 // DRAG PANEL
-let panel=document.getElementById('adminPanel'); let offsetX=0, offsetY=0, dragging=false;
-panel?.addEventListener('mousedown',e=>{dragging=true; offsetX=e.clientX-panel.offsetLeft; offsetY=e.clientY-panel.offsetTop;});
-document.addEventListener('mouseup',()=>dragging=false);
-document.addEventListener('mousemove',e=>{if(dragging){panel.style.left=(e.clientX-offsetX)+'px'; panel.style.top=(e.clientY-offsetY)+'px';}});
+let panel=document.getElementById('adminPanel'); 
+if(panel){
+    let offsetX=0, offsetY=0, dragging=false;
+    panel.addEventListener('mousedown',e=>{dragging=true; offsetX=e.clientX-panel.offsetLeft; offsetY=e.clientY-panel.offsetTop; panel.style.cursor='grabbing';});
+    document.addEventListener('mouseup',()=>{dragging=false; panel.style.cursor='grab';});
+    document.addEventListener('mousemove',e=>{if(dragging){panel.style.left=(e.clientX-offsetX)+'px'; panel.style.top=(e.clientY-offsetY)+'px';}});
+}
 
 // TOGGLE PANEL
 document.getElementById('togglePanel')?.addEventListener('click',()=>{panel.classList.toggle('closed');});
+
+});
 </script>
 
 </body>
