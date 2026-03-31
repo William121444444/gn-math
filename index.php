@@ -1,88 +1,22 @@
 <?php
-session_start();
-error_reporting(0); // Hide warnings on Infinity Free
-
 // -------- CONFIG --------
-$pass = [
-    'owner' => '55155',
-    'co-owner' => '55155',
-    'user' => '1214'
-];
+$githubHTMLUrl = 'https://raw.githubusercontent.com/William121444444/gn-math/main/main.html'; // GitHub raw HTML
+$imageURL = 'https://raw.githubusercontent.com/William121444444/gn-math/main/image.png'; // Optional
+$audioURL = 'https://raw.githubusercontent.com/William121444444/gn-math/main/sound.mp3'; // Optional
+$ttsText = "Welcome to GN Math Portal!"; // Optional text to read
 
-$files = [
-    'state' => 'state.txt',
-    'users' => 'users.json',
-    'whitelist' => 'whitelist.json',
-    'tts' => 'tts.txt',
-    'sound' => 'sound.txt',
-    'image' => 'image.txt'
-];
-
-// -------- INIT FILES --------
-foreach ($files as $f) {
-    if (!file_exists($f)) {
-        $ext = pathinfo($f, PATHINFO_EXTENSION);
-        file_put_contents($f, $ext === 'json' ? '[]' : '');
-    }
+// -------- FUNCTION TO FETCH GITHUB FILE --------
+function fetchRemoteFile($url) {
+    $ch = curl_init($url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+    $data = curl_exec($ch);
+    curl_close($ch);
+    return $data ?: '';
 }
 
-// -------- LOAD DATA --------
-$users = json_decode(@file_get_contents($files['users']), true) ?: [];
-$whitelist = json_decode(@file_get_contents($files['whitelist']), true) ?: [];
-$mode = trim(@file_get_contents($files['state']));
-$ttsText = trim(@file_get_contents($files['tts']));
-$globalSound = trim(@file_get_contents($files['sound']));
-$imageOverlay = trim(@file_get_contents($files['image']));
-
-// -------- AUTO LOGIN COOKIE --------
-if (!isset($_SESSION['role']) && isset($_COOKIE['user'], $_COOKIE['role'])) {
-    $_SESSION['username'] = $_COOKIE['user'];
-    $_SESSION['role'] = $_COOKIE['role'];
-}
-
-// -------- LOGIN --------
-if (!isset($_SESSION['role']) && isset($_POST['username'], $_POST['password'])) {
-    $u = trim($_POST['username']);
-    $p = $_POST['password'];
-
-    $role = array_search($p, $pass, true);
-    if ($role !== false) {
-        $_SESSION['role'] = $role;
-        $_SESSION['username'] = $u;
-        session_regenerate_id(true);
-
-        // Auto-whitelist owners/co-owners
-        if (in_array($role, ['owner', 'co-owner']) && !in_array($u, $whitelist)) {
-            $whitelist[] = $u;
-            file_put_contents($files['whitelist'], json_encode(array_values($whitelist), JSON_PRETTY_PRINT));
-        }
-
-        setcookie('user', $u, time() + 86400 * 30, '/');
-        setcookie('role', $role, time() + 86400 * 30, '/');
-    } else {
-        $error = "Wrong password";
-    }
-}
-
-// -------- LOGOUT --------
-if (isset($_GET['logout'])) {
-    session_destroy();
-    setcookie('user', '', time() - 3600, '/');
-    setcookie('role', '', time() - 3600, '/');
-    header('Location: index.php');
-    exit();
-}
-
-// -------- ADMIN ACTIONS --------
-if (in_array($_SESSION['role'] ?? '', ['owner', 'co-owner', 'admin'])) {
-    if (isset($_POST['whitelist_add'])) {
-        $name = trim($_POST['whitelist_add']);
-        if ($name && !in_array($name, $whitelist)) {
-            $whitelist[] = $name;
-            file_put_contents($files['whitelist'], json_encode(array_values($whitelist), JSON_PRETTY_PRINT));
-        }
-    }
-}
+// -------- FETCH HTML CONTENT --------
+$githubHTML = fetchRemoteFile($githubHTMLUrl);
 ?>
 <!DOCTYPE html>
 <html>
@@ -94,23 +28,11 @@ body{margin:0;font-family:Arial;background:#1e1e2f;color:#fff;}
 #loadingScreen{position:fixed;top:0;left:0;width:100%;height:100%;background:#111;display:flex;justify-content:center;align-items:center;flex-direction:column;z-index:99999;}
 #progressBar{width:80%;height:20px;background:#333;margin-top:10px;border-radius:10px;overflow:hidden;}
 #progressBar div{height:100%;width:0%;background:#fc2651;}
-#mainContainer{display:none;}
-.adminPanel{position:fixed;top:10px;left:10px;background:#111;padding:15px;border-radius:10px;max-height:90vh;overflow:auto;z-index:999;}
-button{margin:3px;padding:8px;background:#fc2651;color:white;border:none;border-radius:5px; cursor:pointer;}
+#mainContainer{display:none;padding:10px;}
+img,audio{max-width:100%;display:block;margin:10px auto;}
 </style>
 </head>
 <body>
-
-<?php if(!isset($_SESSION['role'])): ?>
-<form method="POST" style="text-align:center;margin-top:20%;">
-<input name="username" placeholder="Username" required/>
-<input type="password" name="password" placeholder="Password" required/>
-<button>Login</button>
-<?php if(isset($error)) echo "<p style='color:#f88;'>".htmlspecialchars($error)."</p>"; ?>
-</form>
-<?php else: ?>
-
-<a href="?logout=1" style="position:fixed;top:10px;right:10px;color:white;">Logout</a>
 
 <div id="loadingScreen">
 <h1>Loading...</h1>
@@ -118,38 +40,18 @@ button{margin:3px;padding:8px;background:#fc2651;color:white;border:none;border-
 </div>
 
 <div id="mainContainer">
-<div id="githubContent"></div>
-<div id="image-overlay-container"></div>
-<div id="sound-container"></div>
+<div id="githubContent"><?php echo $githubHTML; ?></div>
+<div id="imageContainer"></div>
+<div id="audioContainer"></div>
 </div>
-
-<?php if(in_array($_SESSION['role'],['owner','co-owner','admin'])): ?>
-<div class="adminPanel">
-<h3>Admin Panel</h3>
-<p>Role: <?php echo htmlspecialchars($_SESSION['role']); ?></p>
-
-<h4>Whitelist Users</h4>
-<form method="POST">
-<input name="whitelist_add" placeholder="Add username">
-<button>Add</button>
-</form>
-
-<ul>
-<?php foreach($whitelist as $w): ?>
-<li><?php echo htmlspecialchars($w);?></li>
-<?php endforeach; ?>
-</ul>
-</div>
-<?php endif; ?>
 
 <script>
 document.addEventListener('DOMContentLoaded',()=>{
     let components=[
-        {type:'github',url:'https://raw.githubusercontent.com/William121444444/gn-math/main/main.html',container:'githubContent'},
-        {type:'image',src:'<?php echo addslashes($imageOverlay); ?>',container:'image-overlay-container'},
-        {type:'audio',src:'<?php echo addslashes($globalSound); ?>',container:'sound-container'}
+        {type:'image',src:'<?php echo addslashes($imageURL); ?>',container:'imageContainer'},
+        {type:'audio',src:'<?php echo addslashes($audioURL); ?>',container:'audioContainer'}
     ];
-    let ttsText = `<?php echo addslashes(trim($ttsText)); ?>`;
+    let ttsText = `<?php echo addslashes($ttsText); ?>`;
 
     let loaded=0,total=components.length;
     function updateProgress(){
@@ -167,11 +69,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 
     components.forEach(c=>{
         let didLoad=false;
-        if(c.type==='github'){
-            fetch(c.url).then(r=>r.text()).then(html=>{
-                if(!didLoad){didLoad=true;document.getElementById(c.container).innerHTML=html;updateProgress();}
-            }).catch(()=>{if(!didLoad){didLoad=true;updateProgress();}});
-        } else if(c.type==='image' && c.src){
+        if(c.type==='image' && c.src){
             let img=document.createElement('img'); img.src=c.src;
             img.onload=()=>{if(!didLoad){didLoad=true;updateProgress();}};
             img.onerror=()=>{if(!didLoad){didLoad=true;updateProgress();}};
@@ -186,6 +84,5 @@ document.addEventListener('DOMContentLoaded',()=>{
     });
 });
 </script>
-<?php endif; ?>
 </body>
 </html>
