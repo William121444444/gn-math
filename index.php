@@ -1,3 +1,27 @@
+<?php
+// ---------------- CONFIG ----------------
+$githubHTMLUrl = 'https://raw.githubusercontent.com/William121444444/gn-math/main/main.html';
+$imageURL      = 'https://raw.githubusercontent.com/William121444444/gn-math/main/image.png';
+$audioURL      = 'https://raw.githubusercontent.com/William121444444/gn-math/main/sound.mp3';
+$ttsText       = "Welcome to GN Math Portal!";
+
+// ---------------- FETCH FILE FUNCTION ----------------
+function fetchRemoteFile($url) {
+    $ch = curl_init($url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+    curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0'); // GitHub blocks requests without UA
+    $data = curl_exec($ch);
+    if(curl_errno($ch)) {
+        return "<p style='color:red'>Error fetching content: ".curl_error($ch)."</p>";
+    }
+    curl_close($ch);
+    return $data ?: "<p style='color:red'>No content found at $url</p>";
+}
+
+// ---------------- FETCH HTML CONTENT ----------------
+$githubHTML = fetchRemoteFile($githubHTMLUrl);
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,57 +44,47 @@ img,audio{max-width:100%;display:block;margin:10px auto;}
 </div>
 
 <div id="mainContainer">
-<div id="githubContent"></div>
-<div id="imageContainer"></div>
-<div id="audioContainer"></div>
+<div id="githubContent"><?php echo $githubHTML; ?></div>
+<div id="imageContainer">
+    <img src="<?php echo $imageURL; ?>" alt="Image Overlay">
+</div>
+<div id="audioContainer">
+    <audio src="<?php echo $audioURL; ?>" autoplay></audio>
+</div>
 </div>
 
 <script>
-// CONFIG: Replace these with your GitHub raw URLs
-const githubHTMLUrl = 'https://raw.githubusercontent.com/William121444444/gn-math/main/main.html';
-const imageURL = 'https://raw.githubusercontent.com/William121444444/gn-math/main/image.png';
-const audioURL = 'https://raw.githubusercontent.com/William121444444/gn-math/main/sound.mp3';
-const ttsText = "Welcome to GN Math Portal!";
+document.addEventListener('DOMContentLoaded',()=>{
+    const ttsText = `<?php echo addslashes($ttsText); ?>`;
+    const mainContainer = document.getElementById('mainContainer');
+    const progressBar = document.getElementById('progressBar').firstElementChild;
 
-// Fetch HTML from GitHub
-fetch(githubHTMLUrl)
-  .then(resp => resp.text())
-  .then(html => { document.getElementById('githubContent').innerHTML = html; })
-  .catch(() => { document.getElementById('githubContent').innerHTML = "<p style='color:red'>Failed to load content</p>"; });
+    let componentsLoaded = 0;
+    const totalComponents = 2; // image + audio
 
-// Components to load
-let components = [
-    {type:'image',src:imageURL,container:'imageContainer'},
-    {type:'audio',src:audioURL,container:'audioContainer'}
-];
-
-let loaded=0,total=components.length;
-function updateProgress(){
-    loaded++;
-    let percent = Math.floor((loaded/total)*100);
-    document.getElementById('progressBar').firstElementChild.style.width = percent + '%';
-    if(loaded >= total){
-        document.getElementById('loadingScreen').style.display = 'none';
-        document.getElementById('mainContainer').style.display = 'block';
-        if(ttsText !== '') speechSynthesis.speak(new SpeechSynthesisUtterance(ttsText));
+    function updateProgress(){
+        componentsLoaded++;
+        let percent = Math.floor((componentsLoaded / totalComponents) * 100);
+        progressBar.style.width = percent + '%';
+        if(componentsLoaded >= totalComponents){
+            document.getElementById('loadingScreen').style.display = 'none';
+            mainContainer.style.display = 'block';
+            if(ttsText) speechSynthesis.speak(new SpeechSynthesisUtterance(ttsText));
+        }
     }
-}
 
-// Load images and audio
-components.forEach(c=>{
-    let didLoad=false;
-    if(c.type==='image' && c.src){
-        let img=document.createElement('img'); img.src=c.src;
-        img.onload=()=>{if(!didLoad){didLoad=true;updateProgress();}};
-        img.onerror=()=>{if(!didLoad){didLoad=true;updateProgress();}};
-        document.getElementById(c.container).appendChild(img);
-    } else if(c.type==='audio' && c.src){
-        let audio=document.createElement('audio'); audio.src=c.src; audio.autoplay=true;
-        audio.onloadeddata=()=>{if(!didLoad){didLoad=true;updateProgress();}};
-        audio.onerror=()=>{if(!didLoad){didLoad=true;updateProgress();}};
-        document.getElementById(c.container).appendChild(audio);
-    } else updateProgress();
-    setTimeout(()=>{if(!didLoad){didLoad=true;updateProgress();}},5000);
+    // Image load check
+    const img = document.querySelector('#imageContainer img');
+    if(img.complete) updateProgress();
+    else { img.onload = updateProgress; img.onerror = updateProgress; }
+
+    // Audio load check
+    const audio = document.querySelector('#audioContainer audio');
+    audio.onloadeddata = updateProgress;
+    audio.onerror = updateProgress;
+
+    // Safety fallback
+    setTimeout(()=>{ if(componentsLoaded<totalComponents){ componentsLoaded=totalComponents; updateProgress(); } }, 5000);
 });
 </script>
 
