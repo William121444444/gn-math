@@ -1,6 +1,6 @@
 <?php
 session_start();
-error_reporting(0); // Hide warnings on Infinity Free
+error_reporting(0);
 
 // -------- CONFIG --------
 $pass = [
@@ -10,7 +10,6 @@ $pass = [
 ];
 
 $files = [
-    'state'=>'state.txt',
     'users'=>'users.json',
     'whitelist'=>'whitelist.json',
     'tts'=>'tts.txt',
@@ -30,7 +29,6 @@ foreach($files as $f){
 // -------- LOAD DATA --------
 $users = json_decode(@file_get_contents($files['users']),true)?:[];
 $whitelist = json_decode(@file_get_contents($files['whitelist']),true)?:[];
-$mode = trim(@file_get_contents($files['state']));
 $ttsText = trim(@file_get_contents($files['tts']));
 $globalSound = @file_get_contents($files['sound']);
 $imageOverlay = @file_get_contents($files['image']);
@@ -80,7 +78,6 @@ if(isset($_GET['logout'])){
 
 // -------- ADMIN ACTIONS --------
 if(in_array($_SESSION['role']??'',['owner','co-owner','admin'])){
-    // Whitelist add
     if(isset($_POST['whitelist_add'])){
         $name = trim($_POST['whitelist_add']);
         if($name && !in_array($name,$whitelist)){
@@ -104,7 +101,6 @@ body{margin:0;font-family:Arial;background:#1e1e2f;color:#fff;}
 #mainContainer{display:none;padding:10px;}
 .adminPanel{position:fixed;top:10px;left:10px;background:#111;padding:15px;border-radius:10px;max-height:90vh;overflow:auto;z-index:999;}
 button{margin:3px;padding:8px;background:#fc2651;color:white;border:none;border-radius:5px; cursor:pointer;}
-iframe{width:100%;height:80vh;border:none;}
 </style>
 </head>
 <body>
@@ -126,7 +122,8 @@ iframe{width:100%;height:80vh;border:none;}
 </div>
 
 <div id="mainContainer">
-<iframe srcdoc="<?php echo htmlspecialchars($mainHTML); ?>"></iframe>
+<!-- INCLUDE main.html DIRECTLY -->
+<?php echo $mainHTML; ?>
 </div>
 
 <?php if(in_array($_SESSION['role'],['owner','co-owner','admin'])): ?>
@@ -154,21 +151,10 @@ document.addEventListener('DOMContentLoaded',()=>{
     const mainContainer = document.getElementById('mainContainer');
     const progressBar = document.getElementById('progressBar').firstElementChild;
 
-    let loaded = 0;
-    const total = 1; // iframe only
-
-    function updateProgress(){
-        loaded++;
-        let percent = Math.floor((loaded/total)*100);
-        progressBar.style.width = percent + '%';
-        if(loaded>=total){
-            document.getElementById('loadingScreen').style.display='none';
-            mainContainer.style.display='block';
-            if(ttsText) speechSynthesis.speak(new SpeechSynthesisUtterance(ttsText));
-        }
-    }
-
-    // iframe loads instantly since we use srcdoc
+    // Simple loading simulation
+    let loaded=0;
+    const total=1;
+    function updateProgress(){loaded++; progressBar.style.width=Math.floor((loaded/total)*100)+'%'; if(loaded>=total){document.getElementById('loadingScreen').style.display='none'; mainContainer.style.display='block'; if(ttsText)speechSynthesis.speak(new SpeechSynthesisUtterance(ttsText));}}
     updateProgress();
 });
 </script>
