@@ -4,84 +4,82 @@ error_reporting(0); // Hide warnings on Infinity Free
 
 // -------- CONFIG --------
 $pass = [
-    'owner'=>'55155',
-    'co-owner'=>'55155',
-    'user'=>'1214'
+    'owner' => '55155',
+    'co-owner' => '55155',
+    'user' => '1214'
 ];
 
 $files = [
-    'state'=>'state.txt',
-    'users'=>'users.json',
-    'whitelist'=>'whitelist.json',
-    'tts'=>'tts.txt',
-    'sound'=>'sound.txt',
-    'image'=>'image.txt'
+    'state' => 'state.txt',
+    'users' => 'users.json',
+    'whitelist' => 'whitelist.json',
+    'tts' => 'tts.txt',
+    'sound' => 'sound.txt',
+    'image' => 'image.txt'
 ];
 
 // -------- INIT FILES --------
-foreach($files as $f){
-    if(!file_exists($f)) file_put_contents($f, in_array(pathinfo($f,PATHINFO_EXTENSION),['json'])?'[]':'');
+foreach ($files as $f) {
+    if (!file_exists($f)) {
+        $ext = pathinfo($f, PATHINFO_EXTENSION);
+        file_put_contents($f, $ext === 'json' ? '[]' : '');
+    }
 }
 
 // -------- LOAD DATA --------
-$users = json_decode(@file_get_contents($files['users']),true)?:[];
-$whitelist = json_decode(@file_get_contents($files['whitelist']),true)?:[];
+$users = json_decode(@file_get_contents($files['users']), true) ?: [];
+$whitelist = json_decode(@file_get_contents($files['whitelist']), true) ?: [];
 $mode = trim(@file_get_contents($files['state']));
 $ttsText = trim(@file_get_contents($files['tts']));
-$globalSound = @file_get_contents($files['sound']);
-$imageOverlay = @file_get_contents($files['image']);
+$globalSound = trim(@file_get_contents($files['sound']));
+$imageOverlay = trim(@file_get_contents($files['image']));
 
 // -------- AUTO LOGIN COOKIE --------
-if(!isset($_SESSION['role']) && isset($_COOKIE['user'],$_COOKIE['role'])){
+if (!isset($_SESSION['role']) && isset($_COOKIE['user'], $_COOKIE['role'])) {
     $_SESSION['username'] = $_COOKIE['user'];
     $_SESSION['role'] = $_COOKIE['role'];
 }
 
 // -------- LOGIN --------
-if(!isset($_SESSION['role']) && isset($_POST['username'],$_POST['password'])){
+if (!isset($_SESSION['role']) && isset($_POST['username'], $_POST['password'])) {
     $u = trim($_POST['username']);
     $p = $_POST['password'];
 
-    if(in_array($p,$pass)){
-        $r = array_search($p,$pass);
-        $_SESSION['role'] = $r;
+    $role = array_search($p, $pass, true);
+    if ($role !== false) {
+        $_SESSION['role'] = $role;
         $_SESSION['username'] = $u;
+        session_regenerate_id(true);
 
         // Auto-whitelist owners/co-owners
-        if(in_array($r,['owner','co-owner']) && !in_array($u,$whitelist)){
+        if (in_array($role, ['owner', 'co-owner']) && !in_array($u, $whitelist)) {
             $whitelist[] = $u;
             file_put_contents($files['whitelist'], json_encode(array_values($whitelist), JSON_PRETTY_PRINT));
         }
 
-        setcookie('user',$u,time()+86400*30,'/');
-        setcookie('role',$r,time()+86400*30,'/');
+        setcookie('user', $u, time() + 86400 * 30, '/');
+        setcookie('role', $role, time() + 86400 * 30, '/');
+    } else {
+        $error = "Wrong password";
     }
-    elseif($p===$pass['user']){
-        $_SESSION['role'] = 'user';
-        $_SESSION['username'] = $u;
-
-        setcookie('user',$u,time()+86400*30,'/');
-        setcookie('role','user',time()+86400*30,'/');
-    }
-    else $error = "Wrong password";
 }
 
 // -------- LOGOUT --------
-if(isset($_GET['logout'])){
+if (isset($_GET['logout'])) {
     session_destroy();
-    setcookie('user','',time()-3600,'/');
-    setcookie('role','',time()-3600,'/');
-    header('Location:index.php'); exit();
+    setcookie('user', '', time() - 3600, '/');
+    setcookie('role', '', time() - 3600, '/');
+    header('Location: index.php');
+    exit();
 }
 
 // -------- ADMIN ACTIONS --------
-if(in_array($_SESSION['role']??'',['owner','co-owner','admin'])){
-    // Whitelist add
-    if(isset($_POST['whitelist_add'])){
+if (in_array($_SESSION['role'] ?? '', ['owner', 'co-owner', 'admin'])) {
+    if (isset($_POST['whitelist_add'])) {
         $name = trim($_POST['whitelist_add']);
-        if($name && !in_array($name,$whitelist)){
+        if ($name && !in_array($name, $whitelist)) {
             $whitelist[] = $name;
-            file_put_contents($files['whitelist'],json_encode(array_values($whitelist),JSON_PRETTY_PRINT));
+            file_put_contents($files['whitelist'], json_encode(array_values($whitelist), JSON_PRETTY_PRINT));
         }
     }
 }
@@ -108,7 +106,7 @@ button{margin:3px;padding:8px;background:#fc2651;color:white;border:none;border-
 <input name="username" placeholder="Username" required/>
 <input type="password" name="password" placeholder="Password" required/>
 <button>Login</button>
-<?php if(isset($error)) echo "<p style='color:#f88;'>$error</p>"; ?>
+<?php if(isset($error)) echo "<p style='color:#f88;'>".htmlspecialchars($error)."</p>"; ?>
 </form>
 <?php else: ?>
 
@@ -128,7 +126,7 @@ button{margin:3px;padding:8px;background:#fc2651;color:white;border:none;border-
 <?php if(in_array($_SESSION['role'],['owner','co-owner','admin'])): ?>
 <div class="adminPanel">
 <h3>Admin Panel</h3>
-<p>Role: <?php echo $_SESSION['role']; ?></p>
+<p>Role: <?php echo htmlspecialchars($_SESSION['role']); ?></p>
 
 <h4>Whitelist Users</h4>
 <form method="POST">
@@ -148,8 +146,8 @@ button{margin:3px;padding:8px;background:#fc2651;color:white;border:none;border-
 document.addEventListener('DOMContentLoaded',()=>{
     let components=[
         {type:'github',url:'https://raw.githubusercontent.com/William121444444/gn-math/main/main.html',container:'githubContent'},
-        {type:'image',src:'<?php echo $imageOverlay;?>',container:'image-overlay-container'},
-        {type:'audio',src:'<?php echo $globalSound;?>',container:'sound-container'}
+        {type:'image',src:'<?php echo addslashes($imageOverlay); ?>',container:'image-overlay-container'},
+        {type:'audio',src:'<?php echo addslashes($globalSound); ?>',container:'sound-container'}
     ];
     let ttsText = `<?php echo addslashes(trim($ttsText)); ?>`;
 
