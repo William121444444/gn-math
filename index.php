@@ -103,6 +103,30 @@ if(($_SESSION['role']??'')==='blocked'){
     </script>"; exit();
 }
 
+// ---------------- DYNAMIC UPDATE ----------------
+if(isset($_GET['dynamic'])){
+    ?>
+    <div id="dynamic-embeds">
+        <iframe width="110" height="200" src="https://www.myinstants.com/instant/rip-my-granny-loud-asf-56750/embed/"></iframe>
+        <iframe width="110" height="200" src="https://www.myinstants.com/instant/hi-hi-hi-ha-clash-royale-97639/embed/"></iframe>
+    </div>
+
+    <div id="image-overlay-container">
+    <?php if($imageOverlay): ?>
+        <div class="overlay" id="imageOverlay"><img src="<?php echo htmlspecialchars($imageOverlay); ?>"/></div>
+    <?php endif; ?>
+    </div>
+
+    <div id="sound-container">
+    <?php if($globalSound): ?>
+        <audio autoplay id="globalAudio"><source src="<?php echo $globalSound; ?>"></audio>
+    <?php endif; ?>
+    </div>
+
+    <script data-tts data-text="<?php echo htmlspecialchars($ttsText); ?>"></script>
+    <?php
+    exit();
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -116,9 +140,18 @@ body{margin:0;font-family:Arial;background:linear-gradient(135deg,#1e1e2f,#2c2c5
 button{margin:3px;padding:6px 8px;background:#fc2651;color:#fff;border:none;border-radius:5px;cursor:pointer;}
 .overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:#000;display:flex;justify-content:center;align-items:center;z-index:9998;}
 .overlay img{max-width:90%;max-height:90%;}
+#loadingScreen{position:fixed;top:0;left:0;width:100%;height:100%;background:#111;display:flex;justify-content:center;align-items:center;flex-direction:column;color:#fff;z-index:99999;}
+#progressBar{width:80%;height:20px;background:#333;margin-top:10px;border-radius:10px;overflow:hidden;}
+#progressBar div{height:100%;width:0%;background:#fc2651;}
 </style>
 </head>
 <body>
+
+<div id="loadingScreen">
+    <h1>Loading...</h1>
+    <div id="progressText">0 / 5</div>
+    <div id="progressBar"><div></div></div>
+</div>
 
 <?php if(!isset($_SESSION['role'])): ?>
 <form method="POST" style="text-align:center;margin-top:20%;">
@@ -134,7 +167,6 @@ button{margin:3px;padding:6px 8px;background:#fc2651;color:#fff;border:none;bord
 <div id="adminPanel" class="admin-panel">
 <h3><?php echo strtoupper($_SESSION['role']); ?> Panel <button id="togglePanel">☰</button></h3>
 
-<!-- Mode -->
 <form method="POST">
 <button name="mode" value="none">Normal</button>
 <button name="mode" value="sound">Sound</button>
@@ -142,13 +174,11 @@ button{margin:3px;padding:6px 8px;background:#fc2651;color:#fff;border:none;bord
 <p>Current mode: <?php echo htmlspecialchars($mode); ?></p>
 </form>
 
-<!-- Users -->
 <h4>Users</h4>
 <?php foreach($users as $u): ?>
 <div><?php echo htmlspecialchars($u); ?> <a href="?remove=<?php echo urlencode($u); ?>">❌</a></div>
 <?php endforeach; ?>
 
-<!-- Whitelist -->
 <h4>Whitelist</h4>
 <form method="POST">
 <input name="whitelist_add" placeholder="Add user"/>
@@ -158,11 +188,9 @@ button{margin:3px;padding:6px 8px;background:#fc2651;color:#fff;border:none;bord
 <div><?php echo htmlspecialchars($u); ?> <a href="?unwhitelist=<?php echo urlencode($u); ?>">❌</a></div>
 <?php endforeach; ?>
 
-<!-- TTS -->
 <h4>Text To Speech</h4>
 <form method="POST"><input name="tts" placeholder="Say something"/><button>Speak</button></form>
 
-<!-- Soundboard -->
 <h4>Soundboard</h4>
 <form method="POST">
 <select name="sound" onchange="this.form.submit()">
@@ -172,7 +200,6 @@ button{margin:3px;padding:6px 8px;background:#fc2651;color:#fff;border:none;bord
 </select>
 </form>
 
-<!-- Image Display -->
 <h4>Image Display</h4>
 <form method="POST">
 <select name="display_image" onchange="this.form.submit()">
@@ -183,31 +210,57 @@ button{margin:3px;padding:6px 8px;background:#fc2651;color:#fff;border:none;bord
 </select>
 <button name="stop_image" value="1">Stop</button>
 </form>
-
 </div>
 <?php endif; ?>
 
 <h1 style="text-align:center;">Welcome <?php echo htmlspecialchars($_SESSION['username']); ?></h1>
 
-<!-- IMAGE OVERLAY -->
-<?php if($imageOverlay): ?>
-<div class="overlay" id="imageOverlay"><img src="<?php echo htmlspecialchars($imageOverlay); ?>"/></div>
-<script>
-setTimeout(()=>{document.getElementById('imageOverlay').style.display='none';},4000);
-</script>
-<?php endif; ?>
-
-<!-- GLOBAL SOUND -->
-<?php if($globalSound): ?>
-<audio autoplay><source src="<?php echo $globalSound; ?>"></audio>
-<?php endif; ?>
+<div id="dynamic-embeds"></div>
+<div id="image-overlay-container"></div>
+<div id="sound-container"></div>
 
 <script>
 document.addEventListener('DOMContentLoaded',()=>{
 
-// TTS
-let text=<?php echo json_encode($ttsText); ?>;
-if(text.trim()!=="") speechSynthesis.speak(new SpeechSynthesisUtterance(text));
+// COMPONENTS TO LOAD
+let components=[
+    {id:'dynamic-embeds',src:'https://www.myinstants.com/instant/rip-my-granny-loud-asf-56750/embed/'},
+    {id:'dynamic-embeds',src:'https://www.myinstants.com/instant/hi-hi-hi-ha-clash-royale-97639/embed/'},
+    {id:'image-overlay-container',src:'<?php echo $imageOverlay;?>'},
+    {id:'sound-container',src:'<?php echo $globalSound;?>'},
+    {id:'tts',src:'<?php echo $ttsText;?>'}
+];
+let loaded=0;
+function updateProgress(){
+    loaded++;
+    document.getElementById('progressText').innerText=loaded+' / '+components.length;
+    document.getElementById('progressBar').firstElementChild.style.width=(loaded/components.length*100)+'%';
+    if(loaded>=components.length){
+        document.getElementById('loadingScreen').style.display='none';
+        startApp();
+    }
+}
+
+// LOAD COMPONENTS ONE BY ONE
+function loadNext(i){
+    if(i>=components.length) return;
+    let c=components[i];
+    if(c.id==='dynamic-embeds'){
+        let ifr=document.createElement('iframe');
+        ifr.width='110'; ifr.height='200'; ifr.src=c.src; document.getElementById(c.id).appendChild(ifr);
+        ifr.onload=()=>{updateProgress(); loadNext(i+1);}
+    } else if(c.id==='image-overlay-container' && c.src){
+        let img=document.createElement('img'); img.src=c.src; img.onload=()=>{updateProgress(); loadNext(i+1);}
+        document.getElementById(c.id).appendChild(img);
+    } else if(c.id==='sound-container' && c.src){
+        let audio=document.createElement('audio'); audio.src=c.src; audio.autoplay=true; audio.onloadeddata=()=>{updateProgress(); loadNext(i+1);}
+        document.getElementById(c.id).appendChild(audio);
+    } else if(c.id==='tts' && c.src){
+        if(c.src.trim()!=='') speechSynthesis.speak(new SpeechSynthesisUtterance(c.src));
+        updateProgress(); loadNext(i+1);
+    } else {updateProgress(); loadNext(i+1);}
+}
+loadNext(0);
 
 // DRAG PANEL
 let panel=document.getElementById('adminPanel'); 
@@ -221,8 +274,35 @@ if(panel){
 // TOGGLE PANEL
 document.getElementById('togglePanel')?.addEventListener('click',()=>{panel.classList.toggle('closed');});
 
+// DYNAMIC REFRESH FUNCTION
+function updateDynamicContent(){
+    fetch('index.php?dynamic=1')
+    .then(res=>res.text())
+    .then(html=>{
+        let parser = new DOMParser();
+        let doc = parser.parseFromString(html,'text/html');
+        let newEmbeds = doc.getElementById('dynamic-embeds');
+        if(newEmbeds) document.getElementById('dynamic-embeds').innerHTML = newEmbeds.innerHTML;
+        let newOverlay = doc.getElementById('image-overlay-container');
+        if(newOverlay) document.getElementById('image-overlay-container').innerHTML = newOverlay.innerHTML;
+        let newSound = doc.getElementById('sound-container');
+        if(newSound) document.getElementById('sound-container').innerHTML = newSound.innerHTML;
+        let ttsScript = doc.querySelector('script[data-tts]');
+        if(ttsScript){
+            let tts = ttsScript.dataset.text;
+            if(tts.trim()!=="") speechSynthesis.speak(new SpeechSynthesisUtterance(tts));
+        }
+    });
+}
+// Refresh every 3 seconds
+setInterval(updateDynamicContent,3000);
+
+// APP START (after loading screen)
+function startApp(){
+    console.log('All components loaded.');
+}
+
 });
 </script>
-
 </body>
 </html>
