@@ -1,18 +1,23 @@
 <?php
 // -------- CONFIG --------
-$githubHTMLUrl = 'https://raw.githubusercontent.com/William121444444/gn-math/main/main.html'; // GitHub raw HTML
-$imageURL = 'https://raw.githubusercontent.com/William121444444/gn-math/main/image.png'; // Optional
-$audioURL = 'https://raw.githubusercontent.com/William121444444/gn-math/main/sound.mp3'; // Optional
-$ttsText = "Welcome to GN Math Portal!"; // Optional text to read
+$githubHTMLUrl = 'https://raw.githubusercontent.com/William121444444/gn-math/main/main.html';
+$imageURL = 'https://raw.githubusercontent.com/William121444444/gn-math/main/image.png';
+$audioURL = 'https://raw.githubusercontent.com/William121444444/gn-math/main/sound.mp3';
+$ttsText = "Welcome to GN Math Portal!";
 
-// -------- FUNCTION TO FETCH GITHUB FILE --------
+// -------- FUNCTION TO FETCH GITHUB FILE SAFELY --------
 function fetchRemoteFile($url) {
-    $ch = curl_init($url);
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+    curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0'); // GitHub requires a user-agent
     $data = curl_exec($ch);
+    if(curl_errno($ch)) {
+        $data = "<p style='color:red'>Error fetching content: ".curl_error($ch)."</p>";
+    }
     curl_close($ch);
-    return $data ?: '';
+    return $data ?: "<p style='color:red'>No content found at $url</p>";
 }
 
 // -------- FETCH HTML CONTENT --------
