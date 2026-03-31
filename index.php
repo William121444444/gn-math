@@ -116,7 +116,7 @@ button{margin:3px;padding:8px;background:#fc2651;color:white;border:none;border-
 <div class="adminPanel">
 <h3>Admin Panel</h3>
 <p>Role: <?php echo $_SESSION['role']; ?></p>
-<!-- Add your admin panel buttons and inputs here -->
+<!-- Add admin panel features here -->
 </div>
 <?php endif; ?>
 
@@ -132,33 +132,40 @@ let components=[
 
 let loaded=0,total=components.length;
 function updateProgress(){
-loaded++;
-let percent=Math.floor((loaded/total)*100);
-document.getElementById('progressBar').firstElementChild.style.width=percent+'%';
-if(loaded>=total){
-document.getElementById('loadingScreen').style.display='none';
-document.getElementById('mainContainer').style.display='block';
-startApp();
-}
+    loaded++;
+    let percent=Math.floor((loaded/total)*100);
+    document.getElementById('progressBar').firstElementChild.style.width=percent+'%';
+    if(loaded>=total){
+        document.getElementById('loadingScreen').style.display='none';
+        document.getElementById('mainContainer').style.display='block';
+        startApp();
+    }
 }
 
+// --- LOAD EACH COMPONENT SAFELY WITH TIMEOUT ---
 components.forEach(c=>{
-if(c.type==='github'){
-fetch(c.url).then(r=>r.text()).then(html=>{
-document.getElementById(c.container).innerHTML=html;updateProgress();
-}).catch(()=>updateProgress());
-}else if(c.type==='image' && c.src){
-let img=document.createElement('img');img.src=c.src;
-img.onload=()=>updateProgress();img.onerror=()=>updateProgress();
-document.getElementById(c.container).appendChild(img);
-}else if(c.type==='audio' && c.src){
-let audio=document.createElement('audio');audio.src=c.src;audio.autoplay=true;
-audio.onloadeddata=()=>updateProgress();audio.onerror=()=>updateProgress();
-document.getElementById(c.container).appendChild(audio);
-}else if(c.type==='tts' && c.text){
-if(c.text.trim()!=='') speechSynthesis.speak(new SpeechSynthesisUtterance(c.text));
-updateProgress();
-}else updateProgress();
+    let didLoad=false;
+    if(c.type==='github'){
+        fetch(c.url).then(r=>r.text()).then(html=>{
+            if(!didLoad){didLoad=true;document.getElementById(c.container).innerHTML=html;updateProgress();}
+        }).catch(()=>{if(!didLoad){didLoad=true;updateProgress();}});
+    } else if(c.type==='image' && c.src){
+        let img=document.createElement('img'); img.src=c.src;
+        img.onload=()=>{if(!didLoad){didLoad=true;updateProgress();}};
+        img.onerror=()=>{if(!didLoad){didLoad=true;updateProgress();}};
+        document.getElementById(c.container).appendChild(img);
+    } else if(c.type==='audio' && c.src){
+        let audio=document.createElement('audio'); audio.src=c.src; audio.autoplay=true;
+        audio.onloadeddata=()=>{if(!didLoad){didLoad=true;updateProgress();}};
+        audio.onerror=()=>{if(!didLoad){didLoad=true;updateProgress();}};
+        document.getElementById(c.container).appendChild(audio);
+    } else if(c.type==='tts' && c.text){
+        if(c.text.trim()!=='') speechSynthesis.speak(new SpeechSynthesisUtterance(c.text));
+        updateProgress();
+        didLoad=true;
+    } else updateProgress();
+    // Force increment after 5s if still not loaded
+    setTimeout(()=>{if(!didLoad){didLoad=true;updateProgress();}},5000);
 });
 
 function startApp(){console.log('All components loaded');}
